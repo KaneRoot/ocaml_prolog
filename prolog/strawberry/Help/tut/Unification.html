@@ -1,0 +1,101 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Unification</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Unification</font></font></i>
+<br>&nbsp;
+<p><b>Unification</b> is a procedure to establish whether two <a href="Terms.html">terms</a>
+, that eventually contain uninstantiated <a href="Variables.html">variables</a>
+, can be made identical by eventually substituting appropriate (other)
+terms for some of these uninstantiated variables, and, if they can, to
+find these appropriate substitutes.
+<p><font color="#010100"><font size=+1>Examples:</font></font>
+<p><font face="Symbol"><font color="#010100"><font size=+0>&middot; </font></font></font>Terms
+<b><i><font color="#008000"><font size=+1>f(g(X),Y,Z)</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>f(g(Y),a,f(Y))</font></font></i></b>
+unify successfully. The substitute for both <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>Y</font></font></i></b> is
+<b><i><font color="#008000"><font size=+1>a</font></font></i></b>
+, and that for <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+is <b><i><font color="#008000"><font size=+1>f(a)</font></font></i></b>
+.<font face="Symbol"><font color="#010100"><font size=+0></font></font></font>
+<p><font face="Symbol"><font color="#010100"><font size=+0>&middot; </font></font></font>Terms
+<b><i><font color="#008000"><font size=+1>f(a,X)</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>f(X,b)</font></font></i></b>
+will not unify.<font face="Symbol"><font color="#010100"><font size=+0></font></font></font>
+<p><font face="Symbol"><font color="#010100"><font size=+0>&middot; </font></font></font>Terms
+<b><i><font color="#008000"><font size=+1>f(Egg,Hen)</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>f(egg(Hen),hen(Egg))</font></font></i></b>
+will not unify.
+<p>Sometimes unification is called <b>matching</b> . Strictly speaking,
+<b>matching</b>
+differs from unification in that one of the terms is more pattern-like,
+i.e. variables to be substituted are expected to occur there. The other
+term, <i>that<b>matches </b>the pattern or not</i> , is expected to contain
+the substitutes.
+<p><b>In a <i><font color="#008000"><font size=+1>goal</font></font></i>,
+successful unification</b> causes uninstantiated <a href="Variables.html">variables</a>
+to get instantiated to the substitute terms found by unification.
+<p><b>To avoid misunderstanding of unification</b> , one must keep in mind
+that:
+<p><font face="Symbol"><font color="#010100"><font size=+0>&THORN; </font></font></font>Variables
+in terms to be unified may have the same name, yet be distinct. For example,
+<b><i><font color="#008000"><font size=+1>goal(Variable,
+f))</font></font></i></b> , <b><i><font color="#008000"><font size=+1>Variable</font></font></i></b>
+uninstantiated, will successfully unify with <a href="Rule.html">the head
+of rule</a>
+<p><b><i><font color="#008000"><font size=+1>goal(g, Variable) :- write(Variable).</font></font></i></b>
+<p>The call to <b><i><font color="#008000"><font size=+1>write</font></font></i></b>
+will cause <b><i><font color="#008000"><font size=+1>f</font></font></i></b>
+to appear as output.
+<p><font face="Symbol"><font color="#010100"><font size=+0>&THORN; </font></font></font>Unification
+processes terms as if all the earlier <a href="Variables.html">instantiated</a>
+variables that terms may happen to contain were substituted by the corresponding
+(other) terms. For example, the last goal in the question,
+<p><b><i><font color="#008000"><font size=+1>?- X = f(Y), Z = g(f(a)),
+g(X) = Z.</font></font></i></b>
+<p>will actually make the interpreter try to unify <b><i><font color="#008000"><font size=+1>g(f(Y))</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>g(f(a))</font></font></i></b>
+.
+<p><font face="Symbol"><font color="#010100"><font size=+0>&THORN; </font></font></font>The
+variables that occur uninstantiated in terms to be unified, and eventually
+get instantiated after unification, need not belong to the context of the
+<a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">clause</a>
+, that launched unification. For example, trying to satisfy <b><i><font color="#008000"><font size=+1>goal(f(Y),g(f(a))</font></font></i></b>
+by applying the <a href="Rule.html">rule</a>
+<p><b><i><font color="#008000"><font size=+1>goal(X, Z) :- X = Z, Y = b,
+write(Y).</font></font></i></b>
+<p>will succeed by causing both <b><i><font color="#008000"><font size=+1>a</font></font></i></b>
+to instantiate <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+from the goal and <b><i><font color="#008000"><font size=+1>b</font></font></i></b>
+to instantiate <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+from the body of the rule.
+<p><b><font face="Symbol"><font color="#010100"><font size=+0>&THORN; </font></font></font>In
+Strawberry Prolog occur check is always on.</b> That is, instantiating
+a <a href="Variables.html">variable</a> to a term that contains the variable
+is impossible. Although instantiating, e.g. <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+to <b><i><font color="#008000"><font size=+1>f(X)</font></font></i></b>
+, may seem tempting and even sound from a somewhat more abstract viewpoint,
+Strawberry Prolog sticks to the inductive definition of term, and it is
+violated by the outcome <b><i><font color="#008000"><font size=+1>f(f(f(...)))</font></font></i></b>
+of this sort of 'successful unification'.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

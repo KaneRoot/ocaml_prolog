@@ -1,0 +1,1013 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Tutorial in Strawberry Prolog</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Tutorial in Strawberry Prolog</font></font></i>
+<br>&nbsp;
+<p><b>This section of the on-line help of Strawberry Prolog is designed
+for users who have no earlier experience with programming in Prolog.</b>
+It contains short example programs in Prolog and discussions on their development
+and functioning. The section is an introduction to just the basic features
+of Prolog without being precise or exhaustive. Users who are determined
+to take an advanced course in Prolog are recommended the number of textbooks
+available. Among these is the excellent book <i><font color="#010100"><font size=+1>Programming
+in Prolog</font></font></i>by
+<i>W. F. Clocksin </i>and
+<i>C. S. Mellish</i>
+.
+<p><font color="#0000FF"><font size=+1><b>To go through this section</b>,
+place this help window and that of a running Strawberry Prolog environment
+side by side on the screen, and then experiment with the example programs
+while reading. Lines of Prolog programs, which have to be run, can be copied
+into some Strawberry Prolog window through the clipboard, using the Edit|Copy
+command of the Windows Help.</font></font>
+<p><b><i><font color="#008000"><font size=+1>0. <a href="Preliminary_Note.html">A
+preliminary note</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>1. <a href="#t1">Ground concepts</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>2. <a href="#t2">Facts</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>3. <a href="#t3">Questions</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>4. <a href="#t4">Generalization</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>5. <a href="#t5">Rules</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>6. <a href="#t6">A tracing
+session in Strawberry Prolog</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>7. <a href="#t7">Dreadful
+looping</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>8. <a href="#t8">Terms</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>9. <a href="#t9">Arithmetical
+expressions</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>10. <a href="#t10">Infix
+notation</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>11. <a href="#t11">Lists</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>12. <a href="#t12">A list
+processing example</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>13. <a href="#t13">The anonymous
+variable</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>14. <a href="#t14">Updating
+a Prolog database</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>15. <a href="#t15">Inferring
+negation</a></font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>16. <a href="#t16">not, cut,
+fail</a></font></font></i></b>
+<br>&nbsp;
+<p><a NAME="t1"></a><i><font color="#010100"><font size=+1>1. Ground concepts</font></font></i>
+<p>A program in Prolog is a collection of facts and rules on how to treat
+facts in order to check whether some other fact is derivable from the ones
+in stock. Following this brief description, a Prolog program can be viewed
+as a kind of sophisticated database, where some of the data items are stored
+immediately as facts, and other data items can be acquired by applying
+rules. For this reason a Prolog program is often called <a href="Prolog_(run-time)_database.html">Prolog
+database</a> . This database is created by the programmer, and further
+processed by the Prolog interpreter (or compiler) in the course of Prolog
+program execution.
+<p><a href="Prolog_text_execution.html">Program execution</a> itself is
+a specific procedure of searching in the database in order to find out
+whether a certain (kind of) fact can be confirmed on the grounds of the
+facts and rules found in the program. Such facts are called <a href="Prolog_text_execution.html">goals</a>
+. A successful confirmation that some goal can be inferred in a database
+is called <a href="Prolog_text_execution.html">satisfying a goal</a> .
+All procedural behaviour on behalf of Prolog programs, e.g. input and output,
+relies on the specific procedure, known as <a href="Prolog_text_execution.html">backtracking</a>
+, run by the Prolog interpreter during <a href="Prolog_text_execution.html">program
+execution</a> , and on the occurrence of some predefined (<a href="Built-in_predicates_overview.html">built-in</a>
+) kinds of goals in rules. Satisfying such goals, apart from searching
+the <a href="Prolog_(run-time)_database.html">database</a> , has <a href="Built-in_predicates_overview.html">side
+effects</a> , such as opening a file or ringing a bell.
+<br>&nbsp;
+<p><a NAME="t2"></a><i><font color="#010100"><font size=+1>2. Facts</font></font></i>
+<p>In Prolog <a href="Fact.html">facts</a> are understood as formal relationships
+between objects. The effect of the presence of a fact in a <a href="Prolog_(run-time)_database.html">Prolog
+database</a> is chiefly that the Prolog interpreter will succeed, in case
+this fact happens to <a href="Unification.html">match</a> a <a href="Prolog_text_execution.html">goal</a>
+to be satisfied.
+<p>For example, let <b><i><font color="#008000"><font size=+1>strawberry</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>napoleon</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+be some objects. The facts
+<p><b><i><font color="#008000"><font size=+1>likes(turkey, strawberry).
+% 'Turkeys like strawberries.'</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>likes(napoleon, glory). %
+'Napoleon likes glory.'</font></font></i></b>
+<p>represent the formal relationship <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+between these objects. In Prolog a relationship like <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+is called predicate. In this example <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+is a programmer-defined (user-defined) predicate. Just like every Prolog
+implementation, Strawberry Prolog contains <a href="Built-in_predicates_overview.html">built-in
+predicates</a> too. Examples of their working are found below. Consider
+a Prolog database that consists of above facts only. That is, let the predicate
+<b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+be true for the objects <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>strawberry</font></font></i></b>
+, and also for the objects <b><i><font color="#008000"><font size=+1>napoleon</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+.
+<p><font color="#0000FF"><font size=+1>To make such a database, select
+the File|New command from the main menu, and then enter the above facts
+in the newly appeared edit control. It is advisable to immediately select
+File|Save as... after entering the text, to specify a file for your example
+database to reside on disk in.</font></font>
+<br>&nbsp;
+<p><a NAME="t3"></a><i><font color="#010100"><font size=+1>3. Questions</font></font></i>
+<p>To make the Prolog interpreter try to satisfy some <a href="Prolog_text_execution.html">goal</a>
+using this <a href="Prolog_(run-time)_database.html">database</a> , one
+must ask a <a href="Question.html">question</a> with the goal in it. <font color="#0000FF"><font size=+1>In
+Strawberry Prolog this means to place it together with the contents of
+your Prolog database.</font></font> The question:
+<p><b><i><font color="#008000"><font size=+1>?- likes(X, strawberry).</font></font></i></b>
+<p>will cause the Prolog interpreter to respond:
+<p><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>To see this, you need to run your
+program. This you can do by selecting the Run|Run (F5) command from the
+main menu. Just preparing your source for execution, e.g. checking it is
+error-free, is done by selecting Run|Compile.</font></font>
+<p>This response means that the goal in this question got satisfied successfully.
+The reason for this is that substituting the object <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+for the <a href="Variables.html">variable</a> <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+makes the goal <b><i><font color="#008000"><font size=+1>likes(X, strawberry)</font></font></i></b>
+appear exactly the same as the fact <b><i><font color="#008000"><font size=+1>likes(turkey,
+strawberry)</font></font></i></b> . Hence the Prolog interpreter can conclude
+the existence of some object <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+that satisfies the formal relationship <b><i><font color="#008000"><font size=+1>likes(X,
+strawberry)</font></font></i></b> , which is the goal above, and this object
+is <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+. The fact that it is <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+which, when substituted for <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+, brings about success, is also considered by the Prolog interpreter, when
+it processes the goal
+<b><i><font color="#008000"><font size=+1>likes(X,
+strawberry)</font></font></i></b> . The effect of this is that the variable
+<b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+becomes
+<a href="Variables.html">instantiated</a> to the object <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+. This can be demonstrated by asking a bit more complex question:
+<p><b><i><font color="#008000"><font size=+1>?- likes(X, strawberry), write(X).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Edit your initial question to make
+it like this. (Adding the new question to the database next to the previous
+one will cause both to be answered consecutively.)</font></font>
+<p>Answering this question by the Prolog interpreter consists of consecutively
+satisfying first the goal
+<b><i><font color="#008000"><font size=+1>likes(X,
+strawberry)</font></font></i></b> , and second, in case the first goal
+gets satisfied successfully, the goal
+<b><i><font color="#008000"><font size=+1>write(X)</font></font></i></b>
+. Now, when the Prolog interpreter arrives at the goal
+<b><i><font color="#008000"><font size=+1>write(X)</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>X</font></font></i></b> is
+already <a href="Variables.html">instantiated</a> to <b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+. Besides, <b><i><font color="#008000"><font size=+1>write</font></font></i></b>
+is a <a href="Built-in_predicates_overview.html">built-in predicate</a>
+: satisfying <b><i><font color="#008000"><font size=+1>write(...)</font></font></i></b>
+does not cause a database search, but causes whatever its argument, <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+, is <a href="Variables.html">instantiated</a> to to be produced as output.
+So the overall effect of satisfying the goal above is<font color="#0000FF"><font size=+1>(F5)</font></font>
+:
+<p><b><i><font color="#008000"><font size=+1>turkey</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<br>&nbsp;
+<p><a NAME="t4"></a><i><font color="#010100"><font size=+1>4. Generalization</font></font></i>
+<p>In practice it is often desirable to concisely specify a large amount
+of facts of similar kind. For an example of a case, when this can be done
+in Prolog, consider the following Prolog statement:
+<p><b><i><font color="#008000"><font size=+1>likes(X, glory). % 'Everybody
+likes glory.'</font></font></i></b>
+<p><font size=+1><font color="#0000FF">Enter the line above into a new
+edit control window, to avoid getting it shadowed by other facts on </font><b><i><font color="#008000">likes</font></i></b><font color="#0000FF">.</font></font>
+<p>This statement means that the predicate <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+is true, no matter what object stands for <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+, provided that next to <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+is <b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+. The statement, if present in a <a href="Prolog_(run-time)_database.html">Prolog
+database</a> , makes it able to satisfy every concrete <a href="Prolog_text_execution.html">goal</a>
+of the above kind. For example, now the <a href="Question.html">question</a><font color="#0000FF"><font size=+1>(you
+may enter it next to </font><b><font size=+0>likes(X, glory)</font></b><font size=+1>)</font></font>
+<p><b><i><font color="#008000"><font size=+1>?- likes(turkey, glory).</font></font></i></b>
+<p>will get <font color="#0000FF"><font size=+1>(F5)</font></font> a <b><i><font color="#008000"><font size=+1>Yes</font></font></i></b>
+. Moreover, a question like
+<p><b><i><font color="#008000"><font size=+1>?- likes(Y, Z), write(Y),
+nl, write(Z).</font></font></i></b>
+<p>will also be successfully satisfied in case a <a href="Prolog_(run-time)_database.html">database</a>
+contains the above statement. The output that the Prolog interpreter will
+produce upon the above question, may look a little strange:
+<p><b><i><font color="#008000"><font size=+1>_1</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p>The cause for this can be explained by examining in greater detail how
+the Prolog interpreter deals with the 'general fact' <b><i><font color="#008000"><font size=+1>likes(X,
+glory)</font></font></i></b> . When trying to satisfy the goal
+<b><i><font color="#008000"><font size=+1>likes(Y,
+Z)</font></font></i></b> , which is the first step of answering the question
+above, the Prolog interpreter encounters <b><i><font color="#008000"><font size=+1>likes(X,
+glory)</font></font></i></b> in the <a href="Prolog_(run-time)_database.html">database</a>
+. It finds out that <a href="Variables.html">instantiating</a> the <a href="Variables.html">variable</a><b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+to the object <b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+and assuming that the variables <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>Y</font></font></i></b> stand
+for the same thing, make <b><i><font color="#008000"><font size=+1>likes(Y,
+Z)</font></font></i></b> appear exactly the way <b><i><font color="#008000"><font size=+1>likes(X,
+glory)</font></font></i></b> does. Since the latter is found in the Prolog
+database, this is sufficient for the Prolog interpreter to regard the <a href="Prolog_text_execution.html">goal</a>
+as successfully satisfied. However, <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+is not <a href="Variables.html">instantiated</a> when the interpreter arrives
+at the goal<b><i><font color="#008000"><font size=+1>likes(Y, Z)</font></font></i></b>.
+It is just assumed that <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>Y</font></font></i></b> stand
+for the same object, or, as it is adopted to speak in Prolog slang, the
+two variables <a href="Variables.html">share</a> . Hence, there is no concrete
+object to <a href="Variables.html">instantiate</a> <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+to. So, <b><i><font color="#008000"><font size=+1>write </font></font></i></b>produces
+<b><i><font color="#008000"><font size=+1>_1</font></font></i></b>
+- an internal name, which has little meaning to the Prolog programmer.
+Next, after moving to a new line, comes the object <b><i><font color="#008000"><font size=+1>glory</font></font></i></b>
+.
+<br>&nbsp;
+<p><a NAME="t5"></a><i><font color="#010100"><font size=+1>5. Rules</font></font></i>
+<p>A <a href="Prolog_(run-time)_database.html">Prolog database</a> doesn't
+need to contain explicitly all the <a href="Fact.html">facts</a> , it can
+produce. For example, let <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+be a binary predicate which is a strict linear ordering on some given finite
+set of objects. Suppose that some Prolog database is expected to be able
+to produce every fact of the kind <b><i><font color="#008000"><font size=+1>r(a,
+b)</font></font></i></b> , where <b><i><font color="#008000"><font size=+1>a</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>b</font></font></i></b> are
+some objects and, according to <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>a</font></font></i></b> precedes
+<b><i><font color="#008000"><font size=+1>b</font></font></i></b>
+. If there are <b><i><font color="#008000"><font size=+1>n</font></font></i></b>
+distinct objects, the number of the true facts of this kind is <b><i><font color="#008000"><font size=+1>n(n-1)/2</font></font></i></b>
+. Since <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+is a linear ordering, <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+satisfies the axiom of <i>transitivity</i>
+<p><i><b><font color="#008000"><font size=+1>r(a, b)</font></font></b>and<b><font color="#008000"><font size=+1>r(b,
+c)</font></font></b>imply<b><font color="#008000"><font size=+1>r(a, c)</font></font></b>for
+every <b><font color="#008000"><font size=+1>a</font></font></b>, <b><font color="#008000"><font size=+1>b</font></font></b>,
+<b><font color="#008000"><font size=+1>c</font></font></b>.</i>
+<p>This axiom shows that a fact of the kind <b><i><font color="#008000"><font size=+1>r(a,
+c)</font></font></i></b> doesn't need to be stored immediately in a database,
+in case there exists some <b><i><font color="#008000"><font size=+1>b</font></font></i></b>
+such that the facts <b><i><font color="#008000"><font size=+1>r(a, b)</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>r(b, c)</font></font></i></b>
+can be produced by this database, because in this case <b><i><font color="#008000"><font size=+1>r(a,
+c)</font></font></i></b> can be inferred from the former two facts. This
+observation can easily be utilized in a Prolog database. In order to implement
+<b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+, that is defined on <b><i><font color="#008000"><font size=+1>n</font></font></i></b>
+objects, a Prolog database needs only to contain <b><i><font color="#008000"><font size=+1>n-1</font></font></i></b>
+facts of the kind <b><i><font color="#008000"><font size=+1>r(a, b)</font></font></i></b>
+, where object <b><i><font color="#008000"><font size=+1>b</font></font></i></b>
+immediately precedes object <b><i><font color="#008000"><font size=+1>a</font></font></i></b>
+. The rest of the <b><i><font color="#008000"><font size=+1>n(n-1)/2</font></font></i></b>
+facts about <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+can be derived by means of a Prolog <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">rule</a>
+that implements the above axiom. In particular, for <b><i><font color="#008000"><font size=+1>n=5</font></font></i></b>
+the database might look like this:
+<p><b><i><font color="#008000"><font size=+1>r(a1, a2).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>r(a2, a3).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>r(a3, a4).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>r(a4, a5).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>r(X, Y) :- r(X, Z), r(Z,
+Y). % transitivity</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Open a new Prolog-text window with
+the File|New Strawberry Prolog main menu command, then use the Edit|Copy
+Windows Help main menu command, to transfer the above lines to the new
+window through the clipboard.</font></font>
+<p>The last line of this Prolog program is an example of a Prolog rule.
+What comes first in a rule is a <a href="Prolog_text_execution.html">goal</a>
+which defines what facts can be expected to be confirmed by applying this
+rule. This goal is called <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">head</a>
+of the rule. Typically the goal contains argument places occupied by <a href="Variables.html">variables</a>
+, as well as by concrete objects. Next in a rule comes a <b><i><font color="#008000"><font size=+1>:-</font></font></i></b>
+, followed by a sequence of (other) goals. This sequence is called <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">body</a>
+of the rule. A rule says that a fact of the kind specified by its head
+can be confirmed, provided that all the facts in the body can be confirmed.
+<br>&nbsp;
+<p><a NAME="t6"></a><i><font color="#010100"><font size=+1>6. A tracing
+session in Strawberry Prolog</font></font></i>
+<p>Let us now trace how the Prolog interpreter will work to satisfy a <a href="Prolog_text_execution.html">goal</a>
+using this <a href="Prolog_(run-time)_database.html">database</a> . Consider
+the question <font color="#0000FF"><font size=+1>(add it to the new database,
+then just Run|Compile it)</font></font> :
+<p><b><i><font color="#008000"><font size=+1>?- r(a2, a5).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>To start tracing, select Trace|First
+step (Ctrl+F5), instead of Run|Run from the main menu. Next, select Trace|Proof
+Tree, to open a window, that will let you watch what is going on.</font></font>
+<p>This <a href="Question.html">question</a> makes the interpreter try
+to confirm the <a href="Fact.html">fact</a> <b><i><font color="#008000"><font size=+1>r(a2,
+a5)</font></font></i></b> . The interpreter proceeds by looking up in the
+database from the first line down for a fact to <a href="Unification.html">match</a>
+with <b><i><font color="#008000"><font size=+1>r(a2, a5)</font></font></i></b>
+. None of the facts in the first four lines <a href="Unification.html">matches</a>
+.
+<p><font color="#0000FF"><font size=+1>To make the interpreter get to work,
+press F9 (Trace|One step). What you must see is a </font></font><font color="#FF0000"><font size=+0>?-,</font></font><font color="#0000FF"><font size=+1>on
+a separate line, followed by the body </font></font><font color="#FF0000"><font size=+0>r(a2,a5),</font></font><font color="#0000FF"><font size=+1>of
+your question.</font></font>
+<p>So, <font color="#0000FF"><font size=+1>(another F9) </font></font>the
+interpreter arrives at the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">rule</a>
+in the last line. The <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">head</a>
+of this rule matches the goal<b><i><font color="#008000"><font size=+1>r(a2,
+a5)</font></font></i></b> , because substituting <b><i><font color="#008000"><font size=+1>a2</font></font></i></b>
+for <b><i><font color="#008000"><font size=+1>X</font></font></i></b> and
+<b><i><font color="#008000"><font size=+1>a5</font></font></i></b>
+for
+<b><i><font color="#008000"><font size=+1>Y</font></font></i></b> makes
+it look exactly the same as this goal. So, the interpreter makes this substitution
+and thus reduces the goal
+<b><i><font color="#008000"><font size=+1>r(a2,
+a5)</font></font></i></b> to the conjunction of the goals
+<b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> . <font color="#0000FF"><font size=+1>The Proof
+Tree window shows these two goals. A small difference to note is that variable
+</font><b><font size=+0>Z</font></b><font size=+1>is
+replaced by an internally named variable.</font></font> Next it tries to
+satisfy the goal
+<b><i><font color="#008000"><font size=+1>r(a2, Z)</font></font></i></b>
+. <font size=+1><font color="#0000FF">This goal is in </font><font color="#FF0000">red</font><font color="#0000FF">,
+like the one coming with the question. This is so, because it is now in
+the focus of the interpreter. The goal next to it, whose turn has not come
+yet, is in </font><font color="#000000">black</font><font color="#0000FF">.</font></font>
+To satisfy this new goal, the interpreter starts another search of the
+database. <font color="#0000FF"><font size=+1>To launch it, press F9 again.</font></font>
+This time it finds that the fact <b><i><font color="#008000"><font size=+1>r(a2,
+a3)</font></font></i></b> <a href="Unification.html">matches</a> the goal<b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> , because <b><i><font color="#008000"><font size=+1>a3</font></font></i></b>
+can be a substitute for the <a href="Variables.html">variable</a> <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+. <font color="#0000FF"><font size=+1>Now, to display that the goal </font><b><font size=+0>r(a2,Z)</font></b><font size=+1>is
+already satisfied, Strawberry Prolog has moved it on the left, and coloured
+it blue.</font></font> The interpreter makes this substitution, and now
+the initial <a href="Prolog_text_execution.html">goal</a> <b><i><font color="#008000"><font size=+1>r(a2,
+a5)</font></font></i></b> gets reduced to the conjunction of goal
+<b><i><font color="#008000"><font size=+1>r(a2,
+a3)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(a3,
+a5)</font></font></i></b> , the former already satisfied. <font color="#0000FF"><font size=+1>Notice,
+that the uninstantiated variable with an internal name has been replaced
+by </font><b><font size=+0>a3</font></b><font size=+1>everywhere, and not
+just in the goal already satisfied.</font></font> In order to satisfy the
+goal
+<b><i><font color="#008000"><font size=+1>r(a3, a5)</font></font></i></b>
+, the interpreter starts another search of the database <font color="#0000FF"><font size=+1>(F9)</font></font>
+, and, after realizing that none of the four facts in it <a href="Unification.html">matches</a>
+the goal, arrives at the rule again. According to it, <b><i><font color="#008000"><font size=+1>r(a3,
+a5)</font></font></i></b> gets reduced to the conjunction of <b><i><font color="#008000"><font size=+1>r(a3,
+Z)</font></font></i></b> , and <b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> . Luckily, the last two goals get successfully
+satisfied: searching the database for a confirmation of <b><i><font color="#008000"><font size=+1>r(a3,
+Z)</font></font></i></b> ends <font color="#0000FF"><font size=+1>(F9)</font></font>
+at the fact <b><i><font color="#008000"><font size=+1>r(a3, a4)</font></font></i></b>
+and causes the interpreter to substitute <b><i><font color="#008000"><font size=+1>a4</font></font></i></b>
+for <b><i><font color="#008000"><font size=+1>Z</font></font></i></b> ;
+this transforms <b><i><font color="#008000"><font size=+1>r(Z, a5)</font></font></i></b>
+into <b><i><font color="#008000"><font size=+1>r(a4, a5)</font></font></i></b>
+- a goal which also <a href="Unification.html">matches</a> a fact contained
+in the database. <font color="#0000FF"><font size=+1>(F9)</font></font>
+Finally the interpreter answers
+<p><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p><font size=+1><font color="#0000FF">Since this was the last goal to
+satisfy in order to get overall success for the goal come with the question,
+all </font><font color="#FF0000">red </font><font color="#0000FF">turns
+</font><font color="#008000">green</font><font color="#0000FF">.</font></font>
+<p>To recapitulate, this example contains two occasions of <a href="Prolog_text_execution.html">rule
+application</a> . In both of them the application of the rule starts with
+finding that the goal to be satisfied by rule application has the form
+specified in the head of the rule. The procedure of establishing this is
+called <a href="Unification.html">unification</a> . Our example shows that
+distinct goals can be found appropriate to satisfy by applying the same
+rule. This is so, because the head of the rule contains variables (<b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>Y</font></font></i></b> )
+which act as placeholders for whatever an individual goal may happen to
+contain at the corresponding places. When <a href="Unification.html">unifying</a>
+the head of the rule with either goal these variables get substituted by
+(or <a href="Variables.html">instantiated to</a> ) the objects which stand
+in their places in the goal. These <a href="Variables.html">instantiations</a>
+affect the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">body</a>
+of the rule as well. Thus each of the two goals, that get satisfied by
+<a href="Prolog_text_execution.html">applying
+the rule</a> , reduces to a different pair of goals. The satisfaction of
+every goal that commences as a result of <a href="Prolog_text_execution.html">applying
+the rule</a> goes in the same way as the satisfaction of the goal that
+causes the rule to be applied. In other words, the Prolog interpreter works
+'recursively'. Although the goals that the rule above gets applied to are
+both simple facts, the pairs of goals that it 'generates' are 'generalized',
+i.e. contain the <a href="Variables.html">uninstantiated</a> variable <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+. This variable is the same one in the goals
+<b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> which emerges due to the first application of
+the rule. It is the same one in the goals
+<b><i><font color="#008000"><font size=+1>r(a3,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> which emerge due to the second application of
+the rule, too. But the <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+s that occur in the goals
+<b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(a3,
+Z)</font></font></i></b> are distinct.
+<p><font color="#0000FF"><font size=+1>Rerun the whole tracing by selecting
+Trace|First step again, then select Trace|Proof Tree and press F9 a few
+times, to see that, until instantiated, the internally named variables
+for </font><b><font size=+0>Z</font></b><font size=+1>get different numbers
+for their names.</font></font>
+<p>The cause for this is that these <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+s get <a href="Variables.html">allocated</a> for the needs of distinct
+<a href="Prolog_text_execution.html">applications</a>
+of the rule. A most significant consequence of that <b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> share the same <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+variable is that after successfully satisfying <b><i><font color="#008000"><font size=+1>r(a2,
+Z)</font></font></i></b> the substitution of <b><i><font color="#008000"><font size=+1>a3</font></font></i></b>
+for <b><i><font color="#008000"><font size=+1>Z</font></font></i></b> affects
+the next-to-satisfy goal
+<b><i><font color="#008000"><font size=+1>r(Z,
+a5)</font></font></i></b> , and it ceases to be 'generalized'.
+<br>&nbsp;
+<p><a NAME="t7"></a><i><font color="#010100"><font size=+1>7. Dreadful
+endless loops</font></font></i>
+<p>The example <a href="Question.html">question</a> above shows that this
+<a href="Prolog_(run-time)_database.html">Prolog
+database</a> will correctly confirm that two objects are in some relation
+of precedence, in case they are, according to the informal understanding
+of this relation. Now consider the following question:
+<p><b><i><font color="#008000"><font size=+1>?- r(a5, a4). % 'Whether a5
+precedes a4?'</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Replace </font><b><font size=+0>?-
+r(a2, a5).</font></b><font size=+1>in your example text with this question
+to experiment with its working.</font></font>
+<p>Of course, following the idea behind this <a href="Prolog_(run-time)_database.html">database</a>
+, it would be most desirable for the Prolog interpreter to answer <font color="#0000FF"><font size=+1>(DO
+<b>NOT</b>CALL
+RUN|RUN HERE<b>!</b>)</font></font>
+<p><b><i><font color="#008000"><font size=+1>No.</font></font></i></b>
+<p>to this question. Unfortunately the interpreter never does so. The <a href="Prolog_text_execution.html">procedure</a>
+it executes in order to check whether <b><i><font color="#008000"><font size=+1>r(a5,
+a4)</font></font></i></b> is derivable from the contents of the database
+runs into an infinite loop. Here is how exactly this happens. <font color="#0000FF"><font size=+1>Start
+a new tracing session now, and make the first F9 step. </font></font>First,
+note that none of the <a href="Fact.html">facts</a> in the database <a href="Unification.html">matches</a>
+the <a href="Prolog_text_execution.html">goal</a> <b><i><font color="#008000"><font size=+1>r(a5,
+a4)</font></font></i></b> . Having realized this, the interpreter tries
+to satisfy the goal by <a href="Prolog_text_execution.html">applying the
+rule</a> . That is, it reduces <font color="#0000FF"><font size=+1>(F9)</font></font>
+the goal <b><i><font color="#008000"><font size=+1>r(a5, a4)</font></font></i></b>
+to the sequence of goals <b><i><font color="#008000"><font size=+1>r(a5,
+Z)</font></font></i></b> and <b><i><font color="#008000"><font size=+1>r(Z,
+a4)</font></font></i></b> , and proceeds to satisfy the first of the two.
+The search for a fact to <a href="Unification.html">match</a> <b><i><font color="#008000"><font size=+1>r(a5,
+Z)</font></font></i></b> fails too. So the rule is reached again, and <b><i><font color="#008000"><font size=+1>r(a5,
+Z)</font></font></i></b> gets reduced <font color="#0000FF"><font size=+1>(F9)</font></font>
+to <b><i><font color="#008000"><font size=+1>r(a5, Z')</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>r(Z', Z)</font></font></i></b>
+. Note that the name <font size=+1><b><i><font color="#008000">Z'</font></i></b><font color="#0000FF">(actually
+some internal name) </font></font>for the <a href="Variables.html">variable</a><b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+here aims to emphasize on that the new <a href="Prolog_text_execution.html">application</a>
+of the rule causes a new copy of the variable <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+to be <a href="Variables.html">allocated</a> . Now the interpreter has
+to satisfy a new goal <b><i><font color="#008000"><font size=+1>r(a5, Z')</font></font></i></b>
+, which is just like the previous one <b><i><font color="#008000"><font size=+1>r(a5,
+Z)</font></font></i></b> . Since the circumstances under which the new
+goal emerges differ in no detectable way for the interpreter, it proceeds
+to satisfy this new goal in exactly the same way
+<font color="#0000FF"><font size=+1>(F9)</font></font>
+. This causes the consecutive generation of a (potentially) infinite sequence
+of
+goals <b><i><font color="#008000"><font size=+1>r(a5, Z'')</font></font></i></b>
+, <font size=+1><font color="#0000FF">(F9,...) </font><b><i><font color="#008000">r(a5,
+Z''')</font></i></b></font> , etc., i.e. an infinite loop. Fortunately,
+this loop does not really require the Strawberry Prolog interpreter to
+be stopped by 'crude force'. <font color="#0000FF"><font size=+1>To let
+the situation develop autonomously, press F6, or select Trace|Go. This
+switches from stepwise to normal execution.</font></font> The reason for
+this is that, when generating every new goal, the interpreter also stores
+some data on how to proceed in case the goal gets satisfied. The accumulation
+of this data soon consumes the whole available memory and the interpreter
+stops with an alarming message <font color="#0000FF"><font size=+1>(Stack
+is full.)</font></font> .
+<p>It is a good question to ask here: Could the compiler have detected
+and avoided the redundant loop-to-abort shown above? It is a pity, but
+Prolog compilers cannot do so. Forthcoming version 2.0 of Strawberry Prolog
+is planned to handle a loop check option to avoid many kinds of redundant
+loops.
+<p>So far, overcoming the undesirable behavior of the interpreter can be
+a reason to make a small modification of the example database. It is suitable
+to specify the relationship <i>object <b><font color="#008000"><font size=+1>a</font></font></b>immediately
+precedes object <b><font color="#008000"><font size=+1>b</font></font></b></i>
+, which is a special case of the relationship <i><b><font color="#008000"><font size=+1>r</font></font></b>,
+object <b><font color="#008000"><font size=+1>a</font></font></b>(merely)
+precedes object <b><font color="#008000"><font size=+1>b</font></font></b></i>
+, by a separate Prolog predicate named, say, <b><i><font color="#008000"><font size=+1>c</font></font></i></b>
+. The four facts from the database changes as follows:
+<p><b><i><font color="#008000"><font size=+1>c(a1, a2).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>c(a2, a3).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>c(a3, a4).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>c(a4, a5).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>To make this modification, just
+change </font><b><font size=+0>r</font></b><font size=+1>to </font><b><font size=+0>c</font></b><font size=+1>in
+the facts already part of your program.</font></font>
+<p>In order to express that <i>immediately precedes</i> implies <i>(merely)
+precedes</i> the database can be augmented with the following <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">rule</a>
+:
+<p><b><i><font color="#008000"><font size=+1>r(X, Y) :- c(X, Y). % r is
+satisfied, provided c is.</font></font></i></b>
+<p>Now consider the following modification of the transitivity rule:
+<p><b><i><font color="#008000"><font size=+1>r(X, Y) :- c(X, Z), r(Z, Y).
+% X precedes Y, provided that</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% X immediately precedes
+some Z</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% and this Z precedes Y.</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Make these changes to continue following
+the example.</font></font>
+<p>Obviously, the modified version of the rule cannot lead the interpreter
+into an infinite loop, at least not in the fashion of the original one.
+The user is encouraged to trace in detail the working of the new database
+on the same example goal as above, and obtain the coveted answer
+<p><b><i><font color="#008000"><font size=+1>No.</font></font></i></b>
+<br>&nbsp;
+<p><a NAME="t8"></a><i><font color="#010100"><font size=+1>8. Terms</font></font></i>
+<p>The examples above exhibit <a href="Fact.html">facts</a> as relationships
+between abstract objects. The objects so far involved have no structure
+of their own. That is why they are called <a href="Atoms.html">atoms</a>
+. Prolog programs allow two more kinds of concrete primitive objects: <a href="Numbers.html">numbers</a>
+and <a href="Character_strings.html">character strings</a> . Save that,
+Prolog provides a way to work with complex objects, which are called structures.
+Syntactically structures are recorded as <a href="Terms.html">terms</a>
+. Here are some example of terms:
+<p><b><i><font color="#008000"><font size=+1>355 / 113 % 355/133 = approximately
+pi</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>unit("inch", "metre", 254
+/ 10000) % some data on the correspondence</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% between measures of length</font></font></i></b>
+<p>A term consists of a <a href="Terms.html">functor</a> and a sequence
+of (simpler) terms, which are called its <a href="Terms.html">arguments</a>
+. The arguments usually follow the functor, and are separated by commas
+and enclosed in parentheses. <a href="Atoms.html">Atoms</a> , <a href="Numbers.html">numbers</a>
+and <a href="Character_strings.html">character strings</a> are the simplest
+kinds of terms. As it can easily be noticed, terms do not look very different
+from facts and goals. Moreover, even <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">rules</a>
+can be viewed as a special kind of terms. It is often convenient to think
+in terms of tree-like structures, like these, that correspond to the above
+terms:
+<center>
+<p><img SRC="Pic0.gif" height=147 width=396></center>
+
+<p>Such structures are available in a large variety of programming languages.
+A feature of terms, which is rather specific to Prolog, is that one can
+specify terms which are not concrete objects, but, just like 'generalized'
+facts and goals in rules, they contain <a href="Variables.html">variables</a>
+as their arguments, and thus represent <i>any object of some specified
+shape</i> . Some of the rules in the example <a href="Prolog_(run-time)_database.html">Prolog
+database</a> below, when <a href="Prolog_text_execution.html">applied</a>
+, may cause the <a href="Variables.html">instantiation</a> of variables
+inside terms:
+<p><b><i><font color="#008000"><font size=+1>nonzero(5). % 5 is a nonzero
+number</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>nonzero(15). % 15 is a nonzero
+number</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>equal_to(X, X). % every object
+is equal to itself</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>equal_to(A * X, B) :- nonzero(A),
+equal_to(X, B / A).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% the product of A and X
+is equal to B,</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% provided that A is nonzero</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% and X is the quotient of
+B and A.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% The functor of a term that
+is an</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% arithmetical expression
+may stand between</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% its arguments.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>equal_to(0 * X, 0).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% no matter what X is,</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% the product of 0 and X
+equals 0.</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Make a new window for Prolog text
+in your running Strawberry Prolog environment and enter the above database.</font></font>
+<p>To see this take place, consider the <a href="Question.html">question</a><font color="#0000FF"><font size=+1>(enter
+this question too, and press F5 to get it answered)</font></font> :
+<p><b><i><font color="#008000"><font size=+1>?- equal_to(5 * X, 2), write(X).</font></font></i></b>
+<p>that will actually make the Prolog interpreter produce a 'symbolic solution'
+to the equation <b><i><font color="#008000"><font size=+1>5x=2</font></font></i></b>
+. The response of Prolog to this question is
+<p><b><i><font color="#008000"><font size=+1>2 / 5 % the quotient of 2
+and 5</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p>Thanks to the opportunity to recursively <a href="Prolog_text_execution.html">apply
+Prolog rules</a> , the above program can produce a solution in a more complicated
+case too:
+<p><b><i><font color="#008000"><font size=+1>?- equal_to(5 * (15 * X),
+25), write(X).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>(Replace the previous question with
+this one and press F5 to execute)</font></font>
+<p>The answer Prolog will give to this question is:
+<p><b><i><font color="#008000"><font size=+1>(25 / 5) / 15</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Employ the debugging facilities
+of Strawberry Prolog to trace in detail the way the above questions get
+answered.</font></font>
+<br>&nbsp;
+<p><a NAME="t9"></a><i><font color="#010100"><font size=+1>9. Arithmetical
+expressions</font></font></i>
+<p>The 'solution' of the equation <b><i><font color="#008000"><font size=+1>5.15.X=25</font></font></i></b>
+is purely 'symbolic': no calculations are done to simplify the expression
+obtained for <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+. This is so, because, although <a href="Terms.html">terms</a> like <b><i><font color="#008000"><font size=+1>B
+/ A</font></font></i></b> denote <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">arithmetical
+expressions</a> , Prolog treats them as mere representations of structures,
+and does not automatically <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">evaluate</a>
+them. Further, the predicate used to specify that a number is distinct
+from 0 is tailored to work just for <b><i><font color="#008000"><font size=+1>5</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>15</font></font></i></b>
+, that actually occur in the example <a href="Question.html">questions</a>
+. A more realistic Prolog program to symbolically solve equations needs
+to refer <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">to
+predicates that cause their argument terms to get evaluated</a> . These
+are the <b><i><font color="#008000"><font size=+1>is</font></font></i></b>
+predicate and <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">the
+comparison predicates</a> . Here is how a more realistic version of <b><i><font color="#008000"><font size=+1>nonzero</font></font></i></b>
+might look like:
+<p><b><i><font color="#008000"><font size=+1>nonzero(X) :- X =\= 0.</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>(Replace the facts on </font><font size=+0>>nonzero</font><font size=+1>with
+this rule.)</font></font>
+<p>The <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">body</a>
+of this <a href="Rule.html">rule</a> contains a 'call' to the <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">comparison
+operator </a><b><i><font color="#008000"><font size=+1>=\=</font></font></i></b>-
+a <a href="Built-in_predicates_overview.html">built-in predicate</a> ,
+which causes its arguments to be <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">evaluated</a>
+, in case they are <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">arithmetical
+expressions</a> , and gets successfully satisfied, in case the values obtained
+are distinct. In case either argument is not an <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">arithmetical
+expression</a> , <b><i><font color="#008000"><font size=+1>=\=</font></font></i></b>
+just fails. With this rule instead of the facts about <b><i><font color="#008000"><font size=+1>5</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>15</font></font></i></b>
+, the program database above can correctly answer a questions like:
+<p><b><i><font color="#008000"><font size=+1>?- equal_to(*(115, X), 250),
+Y is X, write(Y).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>(Replace the previous question with
+this one and press F5 to execute)</font></font>
+<p>Notice the call to the <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html"><b><i><font color="#008000"><font size=+1>is</font></font></i></b>
+predicate</a> in the sequence of <a href="Prolog_text_execution.html">goals</a>
+which constitute this question. This call causes the <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">evaluation</a>
+of the <a href="Arithmetic:_the_is_predicate_and_the_comparison_predicates.html">arithmetical
+expression</a> that <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+is <a href="Variables.html">instantiated</a> to after the success of <b><i><font color="#008000"><font size=+1>equal_to(115
+* X, 250)</font></font></i></b> . The numerical value of this expression
+then <a href="Variables.html">instantiates</a> <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+. The response to this question is:
+<p><b><i><font color="#008000"><font size=+1>2.17391</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>Yes.</font></font></i></b>
+<p>The number 2.17391 is the exact root of the equation <b><i><font color="#008000"><font size=+1>115x=250</font></font></i></b>
+.
+<br>&nbsp;
+<p><a NAME="t10"></a><i><font color="#010100"><font size=+1>10. Infix notation</font></font></i>
+<p>As it is obvious from the above example, <a href="Terms.html">terms</a>
+which have <b><i><font color="#008000"><font size=+1>*</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>/</font></font></i></b> as
+their functors are subject to special treatment on behalf of some <a href="Built-in_predicates_overview.html">built-in</a>
+Prolog predicates. For the sake of convenience such terms can also be recorded
+in the customary <a href="Terms.html">infix notation</a> , e.g. <b><i><font color="#008000"><font size=+1>115
+* X</font></font></i></b> instead of <b><i><font color="#008000"><font size=+1>*(115,
+X)</font></font></i></b> . <a href="Terms.html">Prefix notation</a> is
+available, though rarely used for most terms, e. g. <b><i><font color="#008000"><font size=+1>is(X,
+Y)</font></font></i></b> is legal too.
+<br>&nbsp;
+<p><a NAME="t11"></a><i><font color="#010100"><font size=+1>11. Lists</font></font></i>
+<p>A kind of <a href="Terms.html">terms</a> that have special syntax for
+their so frequent use are <a href="Lists.html">lists</a> . Just like in
+other programming languages, in Prolog lists are used to represent finite
+sequences of arbitrary objects. Here is an example of list:
+<p><b><i><font color="#008000"><font size=+1>[likes, [strawberry, X],</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>[glory, Y]] % example list</font></font></i></b>
+<p>The simplest way to record a list in Strawberry Prolog is to write the
+objects it consists of, separated by commas, and enclosed in brackets.
+This is practicable only if the structure of the lists is clear in advance.
+In general a list is just expected to contain a 'first' object. This object
+is called the <a href="Lists.html">head</a> of the list. What remains of
+a list, if its first object gets removed, is called the <a href="Lists.html">tail</a>
+of a list. A list with head <b><i><font color="#008000"><font size=+1>H</font></font></i></b>
+and tail <b><i><font color="#008000"><font size=+1>T</font></font></i></b>
+can be denoted by
+<p><b><i><font color="#008000"><font size=+1>[H|T]</font></font></i></b>
+<p><font color="#008000"><font size=+1>Unifying</font></font> the example
+list with this one will result in substituting <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+for <b><i><font color="#008000"><font size=+1>H</font></font></i></b> and
+<b><i><font color="#008000"><font size=+1>[[strawberry,
+X], [glory, Y]]
+</font></font></i></b>for <b><i><font color="#008000"><font size=+1>T</font></font></i></b>
+. It is often necessary to specify a few more elements of a list, starting
+with the first one, without specifying the whole list. To do this one can
+write lists like
+<p><b><i><font color="#008000"><font size=+1>[F, P | T] % a list with at
+least two elements</font></font></i></b>
+<p><font color="#008000"><font size=+1>Unifying</font></font> this list
+with the example list will cause <b><i><font color="#008000"><font size=+1>F</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>P</font></font></i></b> and
+<b><i><font color="#008000"><font size=+1>T</font></font></i></b>
+to be
+<a href="Variables.html">instantiated</a> to <b><i><font color="#008000"><font size=+1>likes</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>[strawberry, X]</font></font></i></b>
+, and <b><i><font color="#008000"><font size=+1>[[glory, Y]]</font></font></i></b>
+respectively. The use of <b><i><font color="#008000"><font size=+1>|</font></font></i></b>
+, though indispensable, introduces lots of ambiguity in recording lists.
+In particular <b><i><font color="#008000"><font size=+1>[strawberry, turkey,
+napoleon, glory]</font></font></i></b> , <b><i><font color="#008000"><font size=+1>[strawberry
+| [turkey, napoleon | [glory]]]</font></font></i></b> , and even <b><i><font color="#008000"><font size=+1>[strawberry,
+turkey, napoleon, glory|[]]</font></font></i></b> all denote a list, which
+can be represented by the same tree-like structure.
+<p>The tail of a single-element list is the <a href="Atoms.html">atom</a><b><i><font color="#008000"><font size=+1>[]</font></font></i></b>
+, that is also called the <a href="Lists.html">empty list</a> .
+<br>&nbsp;
+<p><a NAME="t12"></a><i><font color="#010100"><font size=+1>12. A list-processing
+example</font></font></i>
+<p>Let us demonstrate the use of <a href="Lists.html">lists</a> by writing
+a still more concise <a href="Prolog_(run-time)_database.html">Prolog database</a>
+to represent the linear ordering predicate <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+from the example above.
+<font color="#0000FF"><font size=+1>(You need a
+fresh edit control window again, because this database must not merge with
+others)</font></font> The ordering <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+can be represented as the list <b><i><font color="#008000"><font size=+1>[a1,
+a2, a3, a4]</font></font></i></b> , where every object occurs on the left
+of the ones it precedes. This list can be included in the Prolog database
+as the <a href="Fact.html">fact</a> :
+<p><b><i><font color="#008000"><font size=+1>r_list([a1, a2, a3, a4]).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>(Enter this fact into a new window
+for Prolog text)</font></font>
+<p>Now, in order to define the <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+predicate, it is enough to represent as a collection of Prolog <a href="Rule.html">rules</a>
+the following statement:
+<p><i><b><font color="#008000"><font size=+1>r(a, b)</font></font></b>holds
+iff the above list has the form <b><font color="#008000"><font size=+1>[a1,...,
+a | [ak,..., b | T]]</font></font></b></i>
+<p>In other words, after eventually removing several elements from the
+beginning of the list which satisfies <b><i><font color="#008000"><font size=+1>r_list</font></font></i></b>
+, it must be possible to obtain a list that has <b><i><font color="#008000"><font size=+1>a</font></font></i></b>
+for its <a href="Lists.html">head</a> , and has <b><i><font color="#008000"><font size=+1>b</font></font></i></b>
+as a <b><i><font color="#008000"><font size=+1>member</font></font></i></b>
+of its <a href="Lists.html">tail</a> . Here follow the appropriate Prolog
+rules:
+<p><b><i><font color="#008000"><font size=+1>sublist(L, L).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>sublist([H | T], S) :- sublist(T,
+S).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>member(Y, [Y | Z]).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>member(Y, [W | Z]) :- member(Y,
+Z).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>r(X, Y) :- r_list(L), sublist(L,
+[X | T]), member(Y, T).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>(Add these lines to the data on
+the ordering </font><font size=+0>>r</font><font size=+1>)</font></font>
+<p>The predicate <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+defines what it means for some list <b><i><font color="#008000"><font size=+1>S</font></font></i></b>
+to represent the same sequence as some other list <b><i><font color="#008000"><font size=+1>L</font></font></i></b>
+, save the first several members. The first line says that <b><i><font color="#008000"><font size=+1>L</font></font></i></b>
+is a <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+of itself. The second says that <b><i><font color="#008000"><font size=+1>S</font></font></i></b>
+is a <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+of a list with head <b><i><font color="#008000"><font size=+1>H</font></font></i></b>
+and tail <b><i><font color="#008000"><font size=+1>T</font></font></i></b>
+, provided that it is a <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+of the tail <b><i><font color="#008000"><font size=+1>T</font></font></i></b>
+. Next come the rules which define what it means for some object <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+to be <b><i><font color="#008000"><font size=+1>member</font></font></i></b>
+of some list. The cases in which this holds are two again: <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+has to be either the head of the list or a <b><i><font color="#008000"><font size=+1>member</font></font></i></b>
+of the tail of the list. Finally <b><i><font color="#008000"><font size=+1>r(X,
+Y)</font></font></i></b> holds if some <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+of the one which defines the linear ordering in question starts with <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+and has <b><i><font color="#008000"><font size=+1>Y</font></font></i></b>
+as a <b><i><font color="#008000"><font size=+1>member</font></font></i></b>
+of its tail.
+<p><font color="#0000FF"><font size=+1>Run this example program using the
+tracing facilities of Strawberry Prolog in order to see how exactly it
+works. For this purpose, of course, you must supply an appropriate question.</font></font>
+<br>&nbsp;
+<p><a NAME="t13"></a><i><font color="#010100"><font size=+1>13. The anonymous
+variable</font></font></i>
+<p>Note the occurrence of the <a href="Variables.html">variable</a> <b><i><font color="#008000"><font size=+1>H</font></font></i></b>
+in the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">head</a>
+of the <a href="Rule.html">rule</a> in the second line of the definition
+of <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+. <b><i><font color="#008000"><font size=+1>H</font></font></i></b> occurs
+nowhere else in the rule. It acts just as a placeholder to ensure that
+the first argument of <b><i><font color="#008000"><font size=+1>sublist</font></font></i></b>
+has <b><i><font color="#008000"><font size=+1>some</font></font></i></b>
+head, no matter which exactly, and occurs nowhere else. The roles of <b><i><font color="#008000"><font size=+1>Z</font></font></i></b>
+in the first line of the definition of <b><i><font color="#008000"><font size=+1>member</font></font></i></b>
+, and that of <b><i><font color="#008000"><font size=+1>W</font></font></i></b>
+in the second one, are similarly inferior. In such cases, programmers in
+Prolog are recommended to use a special variable, which is called the <a href="The_anonymous_variable.html">anonymous
+variable</a> . It is denoted by <b><i><font color="#008000"><font size=+1>_</font></font></i></b>
+. Here is how using the anonymous variable changes the above Prolog program:
+<p><b><i><font color="#008000"><font size=+1>sublist(L, L).</font></font></i></b>
+<br><b><font size=+1><i><font color="#008000">sublist([</font></i><font color="#0000FF">_</font><i><font color="#008000">|
+T], S) :- sublist(T, S).</font></i></font></b>
+<br><b><font size=+1><i><font color="#008000">member(Y, [Y | </font></i><font color="#0000FF">_</font><i><font color="#008000">]).</font></i></font></b>
+<br><b><font size=+1><i><font color="#008000">member(Y, [</font></i><font color="#0000FF">_</font><i><font color="#008000">|
+Z]) :- member(Y, Z).</font></i></font></b>
+<br><b><i><font color="#008000"><font size=+1>r(X, Y) :- r_list(L), sublist(L,
+[X | T]), member(Y, T).</font></font></i></b>
+<p><font color="#0000FF"><font size=+1>Make the indicated modifications
+in your window for Prolog text. Then run the whole thing to see that it
+works just the same way.</font></font>
+<p>The <a href="The_anonymous_variable.html">anonymous variable</a> <a href="Unification.html">matches</a>
+'whatever it encounters' during <a href="Unification.html">unification</a>
+. Besides, two or more occurrences of the <a href="The_anonymous_variable.html">anonymous
+variable</a> in the same rule need not stand for the same object.
+<br>&nbsp;
+<p><a NAME="t14"></a><i><font color="#010100"><font size=+1>14. Updating
+a Prolog database</font></font></i>
+<p>Thinking of a <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">Prolog
+program</a> as of a <a href="Prolog_(run-time)_database.html">database</a>
+naturally reminds that databases admit updates. Strawberry Prolog contains
+<a href="Built-in_predicates_overview.html">built-in
+predicates</a> , that, when 'called' have the <a href="Built-in_predicates_overview.html">side
+effect</a> of adding and removing facts and <a href="Rule.html">rule</a>
+from the <a href="Prolog_(run-time)_database.html">Prolog database</a>
+currently processed by the interpreter. These are the predicates <b><i><font color="#008000"><font size=+1>assert</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>retract</font></font></i></b>
+. Each of these predicates takes a single argument. The <a href="Built-in_predicates_overview.html">side
+effect</a> of satisfying <b><i><font color="#008000"><font size=+1>assert</font></font></i></b>
+is adding its argument as a <a href="Fact.html">fact</a> or as a rule to
+the end of the database, depending on what the argument is. Invoking the
+<b><i><font color="#008000"><font size=+1>retract</font></font></i></b>
+predicate causes the interpreter to search the database for the first fact
+or rule which <a href="Unification.html">matches</a> the argument supplied
+to <b><i><font color="#008000"><font size=+1>retract</font></font></i></b>
+. If there is none, <b><i><font color="#008000"><font size=+1>retract</font></font></i></b>
+will fail. Otherwise the item found gets removed from the database. To
+see how these predicates work, consider the implementation of the linear
+ordering predicate <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+with the aid of the supplementary predicate <b><i><font color="#008000"><font size=+1>c</font></font></i></b>
+again. The predicates <b><i><font color="#008000"><font size=+1>add_between</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>remove_between</font></font></i></b>
+, which are defined below, can be used to update the list of facts on <b><i><font color="#008000"><font size=+1>c</font></font></i></b>
+and thus insert new objects at specified places in the ordering <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+, or remove previously inserted objects:
+<p><b><i><font color="#008000"><font size=+1>add_between(X, Y, Z) :- %
+add object X between objects Y and Z</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>retract(c(Y, Z)), % by removing
+the fact which</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% Y immediately precedes
+Z</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>assert(c(Y, X)), % and adding</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% that Y immediately precedes
+X,</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>assert(c(X, Z)). % and X
+immediately precedes Z.</font></font></i></b>
+<p><b><i><font color="#008000"><font size=+1>remove_between(X, Y, Z) :-</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>retract(c(Y, X)), retract(c(X,
+Z)), assert(c(Y, Z)).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% converse to add_between</font></font></i></b>
+<br>&nbsp;
+<p><a NAME="t15"></a><i><font color="#010100"><font size=+1>15. Inferring
+negation</font></font></i>
+<p>The predicate <b><i><font color="#008000"><font size=+1>add_between</font></font></i></b>
+which is defined above will not treat the case a new object has to be added,
+say, as the first one, according to the ordering <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+. A Prolog predicate that would do this, will first have to find out which
+object is first, according to <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+, at the time when the new one is to be added. Then this predicate will
+be able to <b><i><font color="#008000"><font size=+1>assert</font></font></i></b>
+the <a href="Fact.html">fact</a> that the new object immediately precedes
+the one found. To determine which is the first object in <b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+means to find an object <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+such that the database does contain a fact of the kind <b><i><font color="#008000"><font size=+1>c(X,
+Y)</font></font></i></b> , and <i>does not</i> contain facts of the kind
+<b><i><font color="#008000"><font size=+1>c(Z,
+X)</font></font></i></b> . In other words, the <a href="Rule.html">rule</a>
+that is needed must look like
+<p><i><b><font color="#008000"><font size=+1>first(X) :- c(X, _),</font></font></b>"<b><font color="#008000"><font size=+1>c(_,
+X)</font></font></b>fails".</i>
+<p>The second 'goal' in the body of this rule ought to be successfully
+satisfied, in case some other <a href="Prolog_text_execution.html">goal</a>
+fails. The Prolog constructs demonstrated so far are not adequate to express
+such a goal. All of them use the data found in the database 'positively',
+i.e. the more data present in the database, the bigger the chance for a
+goal to succeed. One may specify a goal that succeeds exactly in case some
+other goal fails by using the <b><i><font color="#008000"><font size=+1>not</font></font></i></b><a href="Built-in_predicates_overview.html">built-in
+predicate</a> . Using
+<b><i><font color="#008000"><font size=+1>not</font></font></i></b>
+, the predicate <b><i><font color="#008000"><font size=+1>add_first(X)</font></font></i></b>
+, which adds its only argument in the beginning of the linear ordering
+<b><i><font color="#008000"><font size=+1>r</font></font></i></b>
+, can be defined in the following way:
+<p><b><i><font color="#008000"><font size=+1>add_first(X) :- first(Y),
+assert(c(X, Y)).</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>first(Y) :- c(X, _), not(c(_,
+X)).</font></font></i></b>
+<br>&nbsp;
+<p><a NAME="t16"></a><i><font color="#000000"><font size=+1>16. <b>Not</b>,
+'cut', <b>fail</b></font></font></i>
+<p>The <b><i><font color="#008000"><font size=+1>not</font></font></i></b>
+predicate is fundamentally different from the other <a href="Built-in_predicates_overview.html">built-in
+Prolog predicates</a> mentioned so far, because its working affects the
+very <a href="Prolog_text_execution.html">procedure</a> of satisfying <a href="Prolog_text_execution.html">goals</a>
+: in order to satisfy <b><i><font color="#008000"><font size=+1>not(X)</font></font></i></b>
+, the interpreter has to try satisfying the argument <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+as a goal, and declare failure if <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+succeeds; in case <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+fails, <b><i><font color="#008000"><font size=+1>not(X)</font></font></i></b>
+must succeed. Although <b><i><font color="#008000"><font size=+1>not</font></font></i></b>
+itself seems fundamental, the way it gets processed by the interpreter
+just described can be defined in terms of two still more fundamental <a href="Built-in_predicates_overview.html">built-in
+Prolog predicates</a> . They are known as 'cut' and <b><i><font color="#008000"><font size=+1>fail</font></font></i></b>
+.
+<p>Here is an example on the role of the 'cut' predicate. As it can be
+seen from the examples above, a <a href="Prolog_(run-time)_database.html">Prolog
+database</a> may contain several <a href="Rule.html">rules</a> with their
+<a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">heads</a><a href="Unification.html">matching</a>
+the same goal. To satisfy one, the interpreter tries <a href="Prolog_text_execution.html">applying
+all the rules</a> , starting from the topmost rule down, until some rule
+applies successfully. Sometimes, after successfully satisfying part of
+the goals which usually constitute the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">body</a>
+of a rule, it becomes clear that the goal which caused the rule to be applied
+will either succeed by successfully finishing the body of the same rule,
+or fail no matter what other rule are available. For example, suppose that
+a database contains the rules
+<p><b><i><font color="#008000"><font size=+1>equal_to(A * X, B) :- A =:=
+0, B =:= 0.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>equal_to(A * X, B) :- A =/=
+0, equal_to(X, B / A).</font></font></i></b>
+<p>The heads of the two rules are exactly the same, and if the first rule
+applies for some goal successfully up to <b><i><font color="#008000"><font size=+1>A
+=:= 0</font></font></i></b> , and then <b><i><font color="#008000"><font size=+1>B
+=:= 0</font></font></i></b> fails, trying to apply the second rule to the
+same goal is no use. This can be expressed by placing a 'cut' between the
+two goal in the body of the first rule. For the sake of brevity 'cut' is
+denoted by <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+:
+<p><b><i><font color="#008000"><font size=+1>equal_to(A * X, B) :- A =:=
+0, !, B =:= 0.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>equal_to(A * X, B) :- A =/=
+0, equal_to(X, B / A).</font></font></i></b>
+<p>Encountering <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+in the body of a rule makes the Prolog interpreter give up (or 'cut') all
+the alternative ways not yet tried to satisfy the goal which caused this
+rule to be applied. (This goal is also called the <i>cutparent</i>.) In
+the example above, if <b><i><font color="#008000"><font size=+1>A</font></font></i></b>
+evaluates to 0 and <b><i><font color="#008000"><font size=+1>B</font></font></i></b>
+does not, thanks to <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+, the interpreter will not attempt to <a href="Prolog_text_execution.html">apply</a>
+the second rule at all. Here <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+just helps save execution time. In general, the alternatives which get
+discarded due to <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+need not be redundant, and <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+can affect the very set of goals which a <a href="Prolog_(run-time)_database.html">database</a>
+will satisfy. Together with one more <a href="Built-in_predicates_overview.html">built-in
+Prolog predicate</a> , namely <b><i><font color="#008000"><font size=+1>fail</font></font></i></b>
+, cut can be used to 'extract' goals from the set of those which a database
+must be able to satisfy. For example, the following database will confirm
+every individual <a href="Fact.html">fact</a> of the kind <b><i><font color="#008000"><font size=+1>likes(X,
+glory)</font></font></i></b> , but the fact <b><i><font color="#008000"><font size=+1>likes(strawberry,
+glory)</font></font></i></b> :
+<p><b><i><font color="#008000"><font size=+1>likes(strawberry, glory) :-
+!, fail.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>likes(X, glory).</font></font></i></b>
+<p>The <b><i><font color="#008000"><font size=+1>fail</font></font></i></b>
+predicate, which is next to <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+in the rule just above, causes the <a href="Prolog_text_execution.html">application</a>
+of this rule to fail. Together with <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+this rule will cause every <a href="Question.html">question</a> like <b><i><font color="#008000"><font size=+1>likes(X,
+glory)</font></font></i></b> where <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+is either <a href="Variables.html">uninstantiated</a> or <a href="Variables.html">instantiated</a>
+to <b><i><font color="#008000"><font size=+1>strawberry</font></font></i></b>
+to be answered <b><i><font color="#008000"><font size=+1>No</font></font></i></b>
+. Yet, in case <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+is <a href="Variables.html">instantiated</a> to another object, the database
+will confirm that <b><i><font color="#008000"><font size=+1>likes(X, glory)</font></font></i></b>
+.
+<p>Having the above examples of the working of <b><i><font color="#008000"><font size=+1>!</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>fail</font></font></i></b>
+in mind, one can easily digest the following definition of the <b><i><font color="#008000"><font size=+1>not</font></font></i></b>
+Prolog predicate.
+<p><b><i><font color="#008000"><font size=+1>not(X) :- X, !, fail. % Try
+satisfying X. Successful ?</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% if yes, not(X) must fail,
+having 'cut' off</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>% alternative ways to succeed.</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>not(X). % if no, not(X) must
+succeed.</font></font></i></b>
+<p>This definition displays a way a <a href="Prolog_text_execution.html">goal</a>
+can be passed as an argument to another goal: here, the body of the rule
+used to define <b><i><font color="#008000"><font size=+1>not</font></font></i></b>
+tells the interpreter to treat <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+as a <a href="Prolog_text_execution.html">goal</a> and try to satisfy it.
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Building in a Lisp Interpreter</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Building-in a Lisp Interpreter</font></font></i>
+<br>&nbsp;
+<p>The file <b>Lisp.pro</b> contains a very simple Lisp interpreter, written
+in Strawberry Prolog. The version of Lisp interpreted is purely functional.
+It is similar to Lispkit Lisp, that is described in the book of <i>P. Henderson
+<font color="#010100"><font size=+1>Functional Programming. Application
+and Implementation</font></font></i> .
+<p>The interpreter is invoked through the eval predicate, i. e.
+<p><b><i><font color="#008000"><font size=+1>eval(Expression,Value)</font></font></i></b>
+<p>succeeds if <b><i><font color="#008000"><font size=+1>Expression</font></font></i></b>
+is instantiated to a Lisp expression and its value is <b><i><font color="#008000"><font size=+1>Value</font></font></i></b>
+.
+<p>This interpreter allows Strawberry Prolog programmers to mix functional
+components into their programs.
+<p>Syntax of Lisp expressions:
+<p>&nbsp;variable ::= Strawberry Prolog atom.
+<br>&nbsp;number ::= Strawberry Prolog number.
+<br>&nbsp;constant ::= <b><i><font color="#008000"><font size=+1>quote(</font></font></i></b>
+Strawberry Prolog Term
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+.
+<br>&nbsp;atomic_expression ::= <b><i><font color="#008000"><font size=+1>[]</font></font></i></b>
+| number | constant | variable.
+<br>&nbsp;unary_operation ::= <b><i><font color="#008000"><font size=+1>car</font></font></i></b>
+| <b><i><font color="#008000"><font size=+1>cdr</font></font></i></b> |
+<b><i><font color="#008000"><font size=+1>atom</font></font></i></b> |
+<b><i><font color="#008000"><font size=+1>number</font></font></i></b>
+| <b><i><font color="#008000"><font size=+1>null</font></font></i></b>
+.
+<br>&nbsp;binary_operation ::= <b><i><font color="#008000"><font size=+1>eq</font></font></i></b>
+| <b><i><font color="#008000"><font size=+1>leq</font></font></i></b> |
+<b><i><font color="#008000"><font size=+1>add</font></font></i></b> | <b><i><font color="#008000"><font size=+1>sub</font></font></i></b>
+| <b><i><font color="#008000"><font size=+1>mul</font></font></i></b> |
+<b><i><font color="#008000"><font size=+1>div</font></font></i></b> | <b><i><font color="#008000"><font size=+1>md</font></font></i></b>
+| <b><i><font color="#008000"><font size=+1>cons</font></font></i></b>
+.
+<br>&nbsp;variable_list ::= <b><i><font color="#008000"><font size=+1>[]</font></font></i></b>
+| nonempty_variable_list
+<br>&nbsp;nonempty_variable_list ::= variable | nonempty_variable_list<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+variable
+<br>&nbsp;expression_list ::= expression | expression_list<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<br>&nbsp;expression ::= atomic_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| unary_operation<b><i><font color="#008000"><font size=+1>(</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><font color="#008000"><font size=+1>
+</font></font></i></b>| binary_operation
+<b><i><font color="#008000"><font size=+1>(</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><font color="#008000"><font size=+1>
+</font></font></i></b>| <b><i><font color="#008000"><font size=+1>list(</font></font></i></b>
+expression_list
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><font color="#008000"><font size=+1>
+</font></font></i></b>| if_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| do_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| lambda_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| let_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| letrec_expression
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| variable<b><i><font color="#008000"><font size=+1>(</font></font></i></b>
+expression_list
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><font color="#008000"><font size=+1>
+</font></font></i></b>| <b><i><font color="#008000"><font size=+1>[</font></font></i></b>
+expression_list
+<b><i><font color="#008000"><font size=+1>]</font></font></i></b>
+.
+<br>&nbsp;if_expression ::= <b><i><font color="#008000"><font size=+1>if(</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+.
+<br>&nbsp;do_expression ::= <b><i><font color="#008000"><font size=+1>do(</font></font></i></b>
+expression_list
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+<br>&nbsp;lambda_expression ::=
+<b><i><font color="#008000"><font size=+1>lambda(</font></font></i></b>
+variable_list
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+.
+<br>&nbsp;let_expression ::= <b><i><font color="#008000"><font size=+1>let(</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+association_list
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+.
+<br>&nbsp;letrec_expression ::= <b><i><font color="#008000"><font size=+1>letrec(</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+association_list
+<b><i><font color="#008000"><font size=+1>)</font></font></i></b>
+.
+<br>&nbsp;association_list ::= association | association_list<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+association.
+<br>&nbsp;association ::= <b><i><font color="#008000"><font size=+1>[</font></font></i></b>
+variable
+<b><i><font color="#008000"><font size=+1>,</font></font></i></b>
+expression
+<b><i><font color="#008000"><font size=+1>]</font></font></i></b>
+.
+<p><font color="#010100"><font size=+1>Example:</font></font>
+<p><b><i><font color="#008000"><font size=+1>?- eval(letrec(fact(7),</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[fact,lambda([x],</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(eq(x,0),</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1,</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mul(x,fact(sub(x,1)))</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+)</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+)]),</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Value), write(Value).</font></font></i></b>
+<br>causes Strawberry Prolog to write <b><i><font color="#008000"><font size=+1>5040</font></font></i></b>
+, which is the value of <b><i><font color="#008000"><font size=+1>7!</font></font></i></b>
+.
+<p>Structure of the program <b>lisp.pro</b> :
+<p>The <b><i><font color="#008000"><font size=+1>eval</font></font></i></b>
+predicate is defined in terms of two other predicates: <b><i><font color="#008000"><font size=+1>l_expr</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>compute</font></font></i></b>.
+The <b><i><font color="#008000"><font size=+1>l_expr</font></font></i></b>
+predicate checks whether the expression given to <b><i><font color="#008000"><font size=+1>eval</font></font></i></b>
+is a syntactically correct Lisp program. If it is, the <b><i><font color="#008000"><font size=+1>compute</font></font></i></b>
+predicate evaluates it.
+<p>The <b><i><font color="#008000"><font size=+1>compute</font></font></i></b>
+predicate contains clauses that correspond to the different Lisp constructs
+implemented. It also refers to <b><i><font color="#008000"><font size=+1>compute_list</font></font></i></b>,
+<b><i><font color="#008000"><font size=+1>compute_ass_list</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>compute_arg_list</font></font></i></b>
+that deal with lists of (variable names and) expressions that have to be
+evaluated. The basic steps in computing Lisp expressions are accomplished
+by the <b><i><font color="#008000"><font size=+1>value </font></font></i></b>and
+<b><i><font color="#008000"><font size=+1>local_value</font></font></i></b>
+predicates, that access variable values, and by the <b><i><font color="#008000"><font size=+1>apply_un</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>apply_bin</font></font></i></b>
+predicates, that implement built-in operations.
+<p>The <b><i><font color="#008000"><font size=+1>reserved_word</font></font></i></b>,
+<b><i><font color="#008000"><font size=+1>binary</font></font></i></b>
+and <b><i><font color="#008000"><font size=+1>unary</font></font></i></b>
+predicates define the lists of atoms that cannot be used as variable names
+in Lisp programs submitted to the interpreter. These lists contain a little
+more built-in Lisp function names than those implemented. If you wish to
+implement the functions in Strawberry Prolog, just edit the <b>lisp.pro</b>
+file. If you prefer to define them in the Lisp program fragments that you
+submit to <b><i><font color="#008000"><font size=+1>eval</font></font></i></b>,
+you will need to remove their names from the lists.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

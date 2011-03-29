@@ -1,0 +1,105 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Prolog text execution</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Prolog Text Execution</font></font></i>
+<br>&nbsp;
+<p>Here is a detailed general outline of the procedure that the Prolog
+interpreter runs to execute <b>Prolog Text</b>.
+<p>The input to this procedure is a single <b><i><font color="#008000"><font size=+1>goal</font></font></i></b>come,
+say, as the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">body</a>
+of a <a href="Question.html">question</a> . The output is an answer <b><i><font color="#008000"><font size=+1>Yes</font></font></i></b>
+or <b><i><font color="#008000"><font size=+1>No</font></font></i></b> to
+'whether the goal is satisfiable', and, if a <b><i><font color="#008000"><font size=+1>Yes</font></font></i></b>
+, a substitution of terms for the <a href="Variables.html">variables</a>
+that occur in the goal.
+<p>Basically, the interpreter satisfies <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">goals</a>
+by searching for <a href="Fact.html">facts</a> and <a href="Rule.html">rules</a>
+in the <b>run-time database</b> , that can be used for this purpose. A
+goal may get satisfied and resatisfied several times within the work on
+some parent goal. Every new time when a goal is to be satisfied, some part
+of the <a href="Prolog_(run-time)_database.html">database</a> gets skipped
+by the corresponding search, because the rules and facts in it have already
+been given their turn in earlier times.
+<p>To describe how this takes place precisely, it is useful to have in
+mind a <b>work-state</b> of execution. This work-state contains <i>every
+goal that is</i> , at the current point of time, <i>subject to resatisfaction</i>
+, together with a <i>pointer into the database</i> . This pointer separates
+the part of the database still subject to search from the part already
+processed. The work-state as a whole is a sequence of goal-and-pointer
+pairs. The initial work-state is the one with the single goal available
+and a pointer to the first item of the database.
+<p>The procedure consists of basically two kinds of steps, called <b>forward
+steps</b> <b>and backward steps</b> , and some <b>control</b> on taking
+them.
+<p>A <b>forward step</b> for a given goal corresponds to either a fact
+or a rule in the Prolog database with its head successfully <a href="Unification.html">unifiable</a>
+with the goal. Performing a forward step means that:
+<p>&nbsp;1. The interpreter allocates all the <a href="Variables.html">variables</a>
+that occur in the fact or rule in question.
+<br>&nbsp;2. Next it <a href="Unification.html">unifies</a> the fact, or
+the head of the rule, if a rule is the case, with the goal, letting the
+variables that get substituted by this <a href="Unification.html">unification</a>
+to be instantiated to these substitutes. Note that variables that come
+with the goal, and are not newly allocated, can get instantiated at this
+point too.
+<br>&nbsp;3. If the database item that triggers the forward step is a fact,
+the above completes the step as a successful one. If this item happens
+to be a rule, the sequence of goals that are the body of the rule is processed
+to try to satisfy the goals themselves by applying the entire backtracking
+procedure on each of them, with all the instantiations so far made in effect.
+This is done by attaching their conjunction to the beginning of the work-state
+with a pointer to the first item of the database.
+<p><b>Performing a backward step</b> , that is needed in case some forward
+steps are still needed, though made impossible by the choices of the database
+items to work with, is undoing the above actions, that constitute a forward
+step.
+<p>Now <b>the control over forward and backward steps</b> is as follows:
+<p>The topmost goal-and-pointer is extracted from the work-state. A forward
+step is made with the goal selected and the first item from the run-time
+database that is at the pointer position or lower, and successfully unifies
+with the goal. If this item happens to be a rule, its body takes the topmost
+position in the new work-state together with a pointer to the beginning
+of the run-time database, as stated above. In both cases a pointer into
+the database, pointing to the item just next to the one extracted, gets
+stored. Informally, the above are the actions taken to initiate the application
+of a rule, or to find an appropriate fact.
+<p>The above control step is repeated as long as possible. With the case
+of rules in mind, where body-goals take place in the work-state, and when
+having reached its top, get processed by corresponding forward steps, one
+can imagine how a complex goal gets processed by a series of successful
+forward steps.
+<p>Normally, there are also failures to satisfy a goal. The work-state
+represents failure as an attempt to find an item in the database to launch
+a forward step, when the pointer component of the topmost element of the
+work-state points to the very end of the database, i.e. no more choices
+of facts and rules are available. Then the interpreter makes a backward
+step by undoing the forward step for the latest successfully satisfied
+goal, and places it, together with the pointer into the database that was
+stored upon its forward step, on top of the work-state. As this pointer
+points just next to the run-time database item that launched that forward
+step, the new work-state dictates an attempt to resatisfy the same goal
+using the same database without the items already proven not successful.
+<p><font color="#010100"><font size=+1>Remark:</font></font> The above
+can be viewed as just a case of the more general backtracking procedure
+as described in the literature on programming.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

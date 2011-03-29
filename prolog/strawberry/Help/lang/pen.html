@@ -1,0 +1,62 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>pen</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>pen</font></b>
+<br><font size=+0>Entity: <b>predicate and function</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>pen(PenWidth, Color)</font></b>
+<br><b><font size=+0>Pen is pen(PenWidth, Color)</font></b>
+<p>Gets/sets the current pen color and line width.
+<br>&nbsp;
+<table BORDER >
+<tr>
+<td VALIGN=TOP>PenWidth</td>
+
+<td VALIGN=TOP>line width in pixels (put zero for transparent pen).</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Color&nbsp;</td>
+
+<td VALIGN=TOP>integer containing a color, you can use <a href="color.html">rgb</a>
+to create such integer.</td>
+</tr>
+</table>
+
+<p>If some of the arguments are not-instantiated variables, they take the
+current values. Otherwise their values are set.
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-window( _, _, win_func(_),
+"Pen Demo", 100, 100, 200, 200).</font></font></i>
+<p><i><font color="#008000"><font size=+1>win_func(paint):-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; pen(1, rgb(255,0,0)),
+line(0,0,200,200),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; pen(5, rgb(0,0,255)),
+line(0,200,200,0).</font></font></i>
+<p>See also:
+<p><a href="brush.html">brush</a>
+<br><a href="Getting/setting_text_color_and_background.html">color_text</a>
+<br><a href="Getting/setting_text_color_and_background.html">color_text_back</a>
+<br><a href="Getting/setting_text_color_and_background.html"></a>&nbsp;
+<br><a href="Getting/setting_text_color_and_background.html"></a>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Arithmetic predicates</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Arithmetic and special types</font></b>
+<br>&nbsp;
+<p><b>Type checking and conversion predicates:</b>
+<p><a href="Type_checking_predicates.html">const</a> checks whether a term
+is a constant
+<br><a href="Type_checking_predicates.html">var</a> checks whether a term
+is a not-instantiated variable
+<br><a href="Type_checking_predicates.html">number</a> checks whether a
+term is a number
+<br><a href="Type_checking_predicates.html">integer</a> checks whether
+the argument is integer or converts it to integer
+<br><a href="Type_checking_predicates.html">float</a> checks whether the
+argument is float or converts it to float
+<br><a href="Type_checking_predicates.html">round</a> returns integer which
+is round the argument
+<br><a href="Type_checking_predicates.html">ceiling</a> returns integer
+which is bigger than the argument
+<br><a href="Type_checking_predicates.html">floor</a> returns integer which
+is smaller than the argument
+<br>&nbsp;
+<p><b>Comparison:</b>
+<p><a href="Compare.html">=</a> unify
+<br><a href="Compare.html">?=</a> unifyable
+<br><a href="Compare.html">\=</a> not unifiable
+<br><a href="Compare.html">></a> bigger than
+<br><a href="Compare.html">&lt;</a> less than
+<br><a href="Compare.html">=:=</a> equal
+<br><a href="Compare.html">>=</a> bigger or equal to
+<br><a href="Compare.html">=&lt;</a> less or equal to
+<br><a href="Compare.html">=\=</a> not equal
+<br>&nbsp;
+<p><b>Evaluation:</b>
+<p><a href="is.html">is</a> evaluates righthandside arithmetical expression
+and unifies the value with the lefthandside variable (Prolog 'assignment')
+<br><a href="is.html">:=</a> stable assignment
+<br><a href="is.html">&lt;>=</a> diamond equal
+<br>&nbsp;
+<p><b>Standard arithmetic:</b>
+<p><a href="Standard_arithmetic.html">+</a> addition
+<br><a href="Standard_arithmetic.html">-</a> subtraction
+<br><a href="Standard_arithmetic.html">*</a> multiplication
+<br><a href="Standard_arithmetic.html">/</a> division
+<br><a href="Standard_arithmetic.html">**</a> exponentiation
+<br><a href="Standard_arithmetic.html">//</a> integer division
+<br><a href="Standard_arithmetic.html">mod</a> modulo
+<br><a href="Standard_arithmetic.html">rem</a> remainder
+<br><a href="Standard_arithmetic.html">abs</a> returns the absolute value
+<br><a href="Standard_arithmetic.html">sign</a> returns the sign
+<br><a href="random.html">random</a> generates random numbers
+<br>&nbsp;
+<p><b>Strings:</b>
+<p><a href="term_to_string.html">print</a> converts a term to a string
+<br><a href="term_to_string.html">printq</a> converts a term to a string
+(without calculating it)
+<br><a href="term_to_string.html">scan</a> converts a string to a term
+<br><a href="Strings.html">+</a> strings concatenation
+<br><a href="sub_string.html">sub_string</a> finds substrings from the
+given one
+<br><a href="Strings.html">str_length</a> finds the length of the given
+string
+<br><a href="split.html">split</a> splits a string using separator character
+<br><a href="Strings.html">equal </a>compares strings (with case and no
+case)
+<br><a href="Strings.html">less_than</a> compares strings (with case and
+no case)
+<br><a href="replace.html">replace</a> replace one string with another
+<br><a href="string_from_ASCII.html">string_from_ASCII</a> makes string
+from ASCII number
+<br>&nbsp;
+<p><b>Bitwise functions:</b>
+<p><a href="Bitwise_functions.html">>></a> shift all bits in right
+<br><a href="Bitwise_functions.html">&lt;&lt;</a> shift all bits in left
+<br><a href="Bitwise_functions.html">/\</a> bitwise <b>and</b> function
+<br><a href="Bitwise_functions.html">\/</a> bitwise <b>or</b> function
+<br><a href="Bitwise_functions.html">xor</a> bitwise <b>xor</b> function
+<br><a href="Bitwise_functions.html">\</a> bitwise <b>not</b> function
+<br>&nbsp;
+<p><b>Floating point functions:</b>
+<p><a href="Floating_point_functions.html">sin</a> calculates the sine
+function
+<br><a href="Floating_point_functions.html">cos</a> calculates the cosine
+function
+<br><a href="Floating_point_functions.html">tg</a> calculates the tangent
+function
+<br><a href="Floating_point_functions.html">arcsin</a> calculates the arcsine
+function
+<br><a href="Floating_point_functions.html">arccos</a> calculates the arccosine
+function
+<br><a href="Floating_point_functions.html">arctg</a> calculates the arctangent
+function
+<br><a href="Floating_point_functions.html">sinh</a> calculates the hyperbolic
+sine function
+<br><a href="Floating_point_functions.html">cosh</a> calculates the hyperbolic
+cosine function
+<br><a href="Floating_point_functions.html">tgh</a> calculates the hyperbolic
+tangent function
+<br><a href="Floating_point_functions.html">sqrt</a> calculates the square
+root
+<br><a href="Floating_point_functions.html">log</a> calculates the natural
+logarithm
+<br><a href="Floating_point_functions.html">log10</a> calculates the logarithm
+with base ten
+<br><a href="Floating_point_functions.html">exp</a> calculates the exponent
+function
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

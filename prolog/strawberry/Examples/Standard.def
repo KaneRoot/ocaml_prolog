@@ -1,0 +1,86 @@
+% This file contains main key words.
+% You can rename but please do not mix.
+
+window.
+dialog.
+button.
+static.
+edit.
+animate.
+bitmap.
+icon.
+listbox.
+combobox.
+scrollbar.
+menu.
+normal.
+pop_up.
+separator.
+init.
+close.
+paint.
+press.
+mouse_click.
+?- .
+:- .
+[#].
+true.
+false.
+op.
+fx.
+xf.
+xfx.
+xfy.
+fxx.
+xxf.
+xfxx.
+xfyy.
+fy.
+yf.
+yfx.
+yfy.
+fyy.
+yyf.
+yfxx.
+yfyy.
+xxfxx.
+yyfxx.
+xxfyy.
+yyfyy.
+*** .
+is.
+mesfunc. % message_function( win_func(), init).
+
+var.
+term.
+str.
+int.
+float.
+obj.
+num.
+list.
+set.
+io.
+metod.
+nocalc.
+post.
+begin.
+end.
+current.
+:-- .
+no_case.
+checked.
+grayed.
+default.
+bold.
+italic.
+underline.
+r_mouse_click.
+size.
+char.
+key_down.
+include.
+right.
+
+
+

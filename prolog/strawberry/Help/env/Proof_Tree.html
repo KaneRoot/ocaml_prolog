@@ -1,0 +1,55 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Proof Tree</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Proof Tree</font></b>
+<p>Opens a supplementary window in which program execution can be seen
+in progress. The main branch of the proof tree under construction for the
+goal being processed is displayed. The subgoals that have already been
+successfully satisfied appear in <font color="#0000FF">blue</font> or in
+<font color="#008000">green</font> . Those but partly satisfied (which
+are satisfying at the moment) appear in <font color="#FF0000">red</font>,
+and the ones not yet reached appear in <b>black</b> .
+<p>Information in this window duplicates that in <a href="Stack_window.html">Stack
+window</a> and other trace windows but it is easier to interpret.
+<p>You can double click on <font color="#0000FF">blue</font> goals to see
+how they are satisfied. Note that the terms that instantiate variables
+in these branches can be seen too. If you double click a subgoal and hear
+sound beep, this means that this subgoal is instantiated with an axiom.
+If you want to receive the normal view of the Proof Tree again then double
+click on the last <font color="#FF0000">red</font> subgoal. If you double
+click on a <font color="#008000">green</font> subgoal then you will close
+its subtree.
+<p>You can use buttons <b>Home</b>, <b>End</b> and <b>Insert</b> for horizontal
+scrolling of this window.
+<p><b>Home</b> scrolls to the beginning (the most left point).
+<br><b>End</b> scrolls to the end (the most right point).
+<br><b>Insert</b> scrolls to the middle.
+<p>Use also <b>Page Up</b> , <b>Page Down</b> and <b>arrows</b> .
+<p><b>Warning:</b> The numbers of the variables in the subgoals which are
+in <b>black</b> may be not real in some sense. The reason: If this number
+is bigger than the maximum in the <a href="Variables_window.html">Variables</a>
+window, then this is a not-instantiated variable with temporal number.
+The numbers of other variables are real and they are shown in the <a href="Variables_window.html">Variables</a>
+window. Of course, these numbers are real but not constant because after
+backtracking they can change.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

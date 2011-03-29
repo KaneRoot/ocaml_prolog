@@ -1,0 +1,44 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Predicate OR</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>;</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>A1, ... , An; B1, ... , Bm</font></b>
+<p>The predicate <b>; (or)</b> executes first the left goal <b>A1, ...
+, An</b> and if it fails or on Next Answer executes the right <b>B1, ...
+, Bm</b> .
+<p>Remark:
+<br>The priority of <b>; (or)</b> is smaller then the priority of comma.
+<p>Remark:
+<br>In <b>if-then-else</b> predicate you can use <b>;</b> instead of <b>else</b>
+(for compatibility with other Prolog compilers).
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; read(X),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; (X&lt;2 ; X>3). % true
+outside from the interval from two to three</font></font></i>
+<br>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

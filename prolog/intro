@@ -1,0 +1,30 @@
+Intro
+Prolog => Marseille : début 70
+
+
+Différences avec les autres langages
+- ce qu'on écrit est déclaratif
+- Prolog a une vraie notion de variable
+
+x permet de construire et de manipuler des objets non complètement spécifiés
+x grâce à l'unification on a un moyen de calcul symbolique puissant
+- Prolog permet l'écriture de programmes à utilisations multiples
+ -> vérifier si un objet satisfait une propriété
+ -> construire un objet
+ -> terminer sa construction
+
+ - Prolog est non déterministe -> Un prédicat peut envoyer plusieurs valeurs
+
+lire :- write("donner un entier"), read(X), nl, 
+	 write("votre entier est", write(X),nl.
+
+2 parties du programme Prolog
+- la partie Clauses ou règles
+	-> partie principale du programme
+
+	tete :- p1, p2, .... , pn.
+
+- la partie but contient le but pris en considération lors de l'exécution du programme
+
+Prolog contient un mécanisme de raisonnement.
+Il explore les données dans l'ordre où elles se trouvent dans le programme.

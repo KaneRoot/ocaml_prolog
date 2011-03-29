@@ -1,0 +1,67 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Memory Options window</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Settings of Project dialog box</font></b>
+<br>&nbsp;
+<p><b>Settings</b>
+<p><b>Fix First Random Number</b>
+<br>Causes the system to generate the same pseudo-random number sequence
+every time. This is useful when debugging a program that use random numbers.
+Otherwise if the program displayed some suspicious behavior with some fixed
+random sequence, it possibly will not do so with another. When you play
+a game with random numbers this option have to be switched off. Otherwise
+in all games will be happening the same things.
+<p><b>Nested Comments allowed /* /* ... */ */</b>
+<br>Enables the correct parsing of text that contains nested comments like
+this /*.... /*....*/ ....*/. In the standard they are not allowed and if
+you turn this option off then they will not work here either.
+<p><b>Automatically Prolonged Stack</b>
+<br>Enables the dynamic increasing of the stack.
+<p><b>Stack Full as Fail</b>
+<br>Causes the Stack Full event to be regarded as a failure of the current
+goal, The use of this option can make the work of your program looking
+rather strange!
+<p><b>Use Default Memory</b>
+<br>Use memory settings of the default project.
+<p><b>Use Default Font</b>
+<br>Use font settings of the default project.
+<p><b>Change Window Font</b>
+<br>Opens the characters dialog window to change the font of the text window
+of the project itself or to change the default window font.
+<p><a NAME="BP"></a><b>Break Point</b>
+<br>Gives you the possibility to put a break point in your program and
+make it active or passive. This break point is on step number. This is
+one possibility, unique for Strawberry Prolog, that you do not have in
+other languages or other Prolog compilers. If you want to put a break point
+in the body of a clause then use the built-in predicate <b>trace</b> .
+<p><b>Memory</b>
+<p><b>Size of the Stack </b>The size of the goals stack.
+<br><b>Variables (in K) </b>The total number of variables that can be allocated
+in K (X1024).
+<br><b>Linking Memory </b>The size of Linking memory in Kb. (it is used
+in execution like the Stack).
+<p>Use <b>SD</b> buttons (Set Default) to set to default value. The <b>start</b>
+value is the value at the opening of the compiler. <b>At the moment</b>
+is the value of the current moment and <b>Maximum</b> is the value which
+cannot be exceeded.
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

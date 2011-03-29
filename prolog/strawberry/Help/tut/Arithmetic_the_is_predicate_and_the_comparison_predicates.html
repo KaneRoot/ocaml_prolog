@@ -1,0 +1,95 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Arithmetic: the is predicate and the comparison predicates</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Arithmetic: the </font></font><b><font color="#008000"><font size=+2>is
+</font></font></b><font color="#010100"><font size=+1>predicate and the
+comparison predicates</font></font></i>
+<br>&nbsp;
+<p>This version of Strawberry Prolog has integer arithmetic only. Nevertheless
+we describe all the arithmetic within plans here. <i>Just do expect to
+find that part of it is not available yet.</i>
+<p>Arithmetical expressions are built up using
+<p><font face="Symbol"><font color="#010100"><font size=+0>&middot; </font></font></font>the
+following infix <b>binary operators</b> :
+<p><b><i><font color="#008000"><font size=+1>+, -, *, /, rem, mod, **,
+>>, &lt;&lt;, /\, \/</font></font></i></b>
+<p>They stand for <b>addition</b> , <b>substraction</b> , <b>multiplication</b>
+, <b>division</b> , <b>remainder</b> , <b>modulo</b> , <b>bit-shifts leftward</b>
+and <b>rightward</b> , and <b>bitwise <i>and</i></b>and
+<b><i>or</i></b>
+, respectively.
+<p><font face="Symbol"><font color="#010100"><font size=+0>&middot; </font></font></font>the
+following <b>unary operators</b>
+<p>(unary minus) <b><i><font color="#008000"><font size=+1>-,</font></font></i></b>
+<b><i><font color="#008000"><font size=+1>\</font></font></i></b>
+<p>They stand for <b>negation</b> and <b>bitwise complement</b> , respecively.
+<p>Ordinary (prefix) syntax is the only option for
+<p><b><i><font color="#008000"><font size=+1>abs(Number) </font></font></i></b>absolute
+value
+<br><b><i><font color="#008000"><font size=+1>atan(Number) </font></font></i></b>arctangent
+<br><b><i><font color="#008000"><font size=+1>ceiling(Number) </font></font></i></b>smallest
+integer not smaller than <b><i><font color="#008000"><font size=+1>Number</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>cos(Number) </font></font></i></b>cosine
+<br><i><b><font color="#008000"><font size=+1>exp(Number) </font></font></b>e<b><font color="#008000"><font size=+1>Number</font></font></b></i>
+<br><b><i><font color="#008000"><font size=+1>sign(Number) -1</font></font></i></b>
+, <b><i><font color="#008000"><font size=+1>0</font></font></i></b> or
+<b><i><font color="#008000"><font size=+1>1</font></font></i></b> for negative,
+zero, or positive <b><i><font color="#008000"><font size=+1>Number</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>float(Number) </font></font></i></b>explicit
+conversion to floating point
+<br><b><i><font color="#008000"><font size=+1>floor(Float) </font></font></i></b>largest
+integer not greater than <b><i><font color="#008000"><font size=+1>Number</font></font></i></b>
+<br><b><i><font color="#008000"><font size=+1>log(Number) </font></font></i></b>natural
+logarithm
+<br><b><i><font color="#008000"><font size=+1>sin(Number) </font></font></i></b>sine
+<br><b><i><font color="#008000"><font size=+1>truncate(Float) </font></font></i></b>the
+integer with the greatest absolute value,
+<p>not greater than that of <b><i><font color="#008000"><font size=+1>Float</font></font></i></b>
+, and signed like <b><i><font color="#008000"><font size=+1>Float</font></font></i></b>
+<p><b><i><font color="#008000"><font size=+1>round(Float) </font></font></i></b>the
+integer nearest to 'Float
+<p><b>Trigonometrical functions</b> admit arguments in <b>radians</b> ,
+<b><i><font color="#008000"><font size=+1>atan</font></font></i></b> produces
+result in radians too.
+<p><b>There are two cases, in which arithmetical expressions get evaluated</b>
+. One case comes with the <b><i><font color="#008000"><font size=+1>is</font></font></i></b>
+operator
+<p><b><i><font color="#008000"><font size=+1>X is Expression</font></font></i></b>
+<p>causes the evaluation of <b><i><font color="#008000"><font size=+1>Expression</font></font></i></b>
+and <a href="Variables.html">instantiating</a> variable <b><i><font color="#008000"><font size=+1>X</font></font></i></b>
+to the result. The other case are the occurrences of the comparison predicates:
+<p><i><font color="#008000"><font size=+1><b>Number1 =:= Number2 Number1
+</b>equal to <b>Number2</b></font></font></i>
+<br><i><font color="#008000"><font size=+1><b>Number1 =\= Number2 Number1
+</b>not equal to <b>Number2</b></font></font></i>
+<br><i><font color="#008000"><font size=+1><b>Number1 &lt; Number2 Number1
+</b>greater than <b>Number2</b></font></font></i>
+<br><i><font color="#008000"><font size=+1><b>Number1 > Number2 Number1
+</b>less than <b>Number2</b></font></font></i>
+<br><i><font color="#008000"><font size=+1><b>Number1 &lt;= Number2 Number2
+</b>not less than <b>Number1</b></font></font></i>
+<br><i><font color="#008000"><font size=+1><b>Number1 >= Number2 Number2
+</b>not greater than <b>Number1</b></font></font></i>
+<p>Both arguments of these predicates are expected to be arithmetical expressions
+and get evaluated before comparison takes place.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

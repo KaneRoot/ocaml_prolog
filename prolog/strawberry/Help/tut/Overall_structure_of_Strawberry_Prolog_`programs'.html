@@ -1,0 +1,63 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Overall structure of Strawberry Prolog `programs'</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Overall structure of Strawberry
+Prolog 'programs'</font></font></i>
+<br>&nbsp;
+<p>'... Prolog is not a wholly procedural language.' That is why the word
+<i>program</i> , although fit to bring about some intuition, and for this
+reason used in the tutorial text, does not strictly apply to Prolog source.
+Rigor of Standard prescribes whatever is submitted to a Prolog interpreter
+(or compiler) to be called <b>Prolog text</b> .
+<p>Prolog text that Strawberry Prolog admits is syntactically a series
+of <a href="Terms.html">terms</a> , each followed by a <b><i><font color="#008000"><font size=+1>.</font></font></i></b>
+, and whitespace (to provide some difference from other uses of <b><i><font color="#008000"><font size=+1>.</font></font></i></b>
+).
+<p><b>Rules</b> are terms that have <b><i><font color="#008000"><font size=+1>:-</font></font></i></b>
+as their <a href="Terms.html">functor</a> . Recall that the functor of
+a term may be placed among its <a href="Terms.html">arguments</a> , if
+it is an operator. The left-hand side argument of a rule is the <b>head</b>
+of the rule.
+<p>In Strawberry Prolog <b><i><font color="#008000"><font size=+1>:-</font></font></i></b>
+is defined as an operator that admits an arbitrary sequence of arguments
+on its right-hand side. This sequence of terms on the right-hand side of
+a rule is the <b>body</b> of the rule. Terms in the sequence that makes
+the body of a rule are separated by commas.
+<p><b>Questions</b> are terms that have <b><i><font color="#008000"><font size=+1>?-</font></font></i></b>
+as their functor. In Strawberry Prolog <b><i><font color="#008000"><font size=+1>?-</font></font></i></b>
+is an operator that admits an arbitrary sequence of arguments on its right-hand
+side.
+<p>Terms with their functor neither <b><i><font color="#008000"><font size=+1>?-</font></font></i></b>
+nor <b><i><font color="#008000"><font size=+1>:-</font></font></i></b>
+are what the Tutorial calls <b>facts</b> .
+<p>Rules and facts are the kinds of <b>clause</b> that Strawberry Prolog
+admits. Although within the scope of Strawberry Prolog implementer's plans,
+<b>directives</b> are out of the scope of this version of the On-line Help.
+<p><b>Clauses</b> are the <i>data-like</i> and <i>passive</i> part of Prolog
+text in Strawberry Prolog. When compiling text, the Strawberry Prolog interpreter
+consumes them to assemble a <b>Prolog database</b> . After this it processes
+the questions in the order of their occurrence in the text, regardless
+to how they are distributed among clauses.
+<p><b>Changes of the contents of the database</b> caused by the interpreter's
+work on every question are available to next-to-process questions.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

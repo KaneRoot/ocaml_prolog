@@ -1,0 +1,56 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>is</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>is</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font><b><font size=+0></font></b>
+<p><b><font size=+3>:=</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font><b><font size=+0></font></b>
+<p><b><font size=+3>&lt;>=</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>X is Y</font></b>
+<br><b><font size=+0>X := Y</font></b>
+<br><b><font size=+0>X &lt;>= Y</font></b>
+<p><b>is</b> , <b>:=</b> (two point equal) and <b>&lt;>=</b> (diamond equal)
+do one and the same thing. They calculate the expression <b>Y</b> and bound
+it with variable <b>X</b> . The differences are only two. First is that
+<b>:=</b>
+is stable on backtracking but <b>is</b> and <b>&lt;>=</b> are not, i.e.
+after backtracking <b>X</b> will return its old value. Second is that <b>is</b>
+checks if the value of the expression is the same as the value of <b>X</b>
+and if they are different it fails but <b>:=</b> and <b>&lt;>=</b> don't
+care about the old value of <b>X</b> and change it anyway. If <b>X</b>
+is not instantiated then <b>is</b> is equivalent to <b>&lt;>=</b> .
+<p>Example for <b>:=</b>
+<p><i><font color="#008000"><font size=+1>?- s(X), X=a, s(X), X:=b, s(X),
+fail.</font></font></i>
+<p><i><font color="#008000"><font size=+1>s(X).</font></font></i>
+<p><i><font color="#008000"><font size=+1>s(X) :- write(X), nl, fail.</font></font></i>
+<p>Example for <b>&lt;>=</b>
+<p><i><font color="#008000"><font size=+1>?- s(X), X=a, s(X), X&lt;>=b,
+s(X), fail.</font></font></i>
+<p><i><font color="#008000"><font size=+1>s(X).</font></font></i>
+<p><i><font color="#008000"><font size=+1>s(X) :- write(X), nl, fail.</font></font></i>
+<br><i><font color="#008000"><font size=+1></font></font></i>&nbsp;
+<br><i><font color="#008000"><font size=+1></font></font></i>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

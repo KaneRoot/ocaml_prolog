@@ -1,0 +1,81 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Type checking predicates</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Type checking predicates</font></b>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER >
+<tr>
+<td VALIGN=TOP><b>number(X)</b></td>
+
+<td VALIGN=TOP>succeeds if <b>X</b> is a number&nbsp;</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>const(X)</b></td>
+
+<td VALIGN=TOP>succeeds if <b>X</b> is instantiated with a constant (single
+letter or single character)&nbsp;</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>var(X)</b></td>
+
+<td VALIGN=TOP>succeeds if <b>X</b> is a not-instantiated variable</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>integer(X)</b>
+<br><b>R is integer(X)</b></td>
+
+<td VALIGN=TOP>checks whether <b>X</b> is an integer or converts it to
+integer</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>float(X)</b>
+<br><b>R is float(X)</b></td>
+
+<td VALIGN=TOP>checks whether <b>X</b> is a float or converts it to float</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>R is round(X)</b></td>
+
+<td VALIGN=TOP>returns in <b>R</b> an integer rounded from <b>X</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>R is ceiling(X)</b></td>
+
+<td VALIGN=TOP>returns in <b>R</b> the first integer which is bigger than
+<b>X</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>R is floor(X)</b></td>
+
+<td VALIGN=TOP>returns in <b>R</b> , the last integer which is smaller
+than <b>X</b></td>
+</tr>
+</table>
+
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

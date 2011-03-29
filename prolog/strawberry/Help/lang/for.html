@@ -1,0 +1,45 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr>
+<br><b><font size=+3>for</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>for( I, A, B),</font></b>
+<br><b><font size=+0>for( I, A, B, Step)</font></b>
+<p>Makes a loop in which the value of <b>I</b> is moving between <b>A</b>
+and <b>B</b> with step <b>Step</b>. If <b>Step</b> is missing then the
+default step is one.
+<p><b>I</b> starts from <b>A</b> and it last value is =&lt;
+<b>B</b> if
+step is positive and is >=
+<b>B</b> if step is negative.
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?- for( I, 10, 1, -1), write(I),
+write(" "), fail.</font></font></i>
+<p>This example will write:
+<p><font color="#0000FF"><font size=+1>10 9 8 7 6 5 4 3 2 1 No</font></font>
+<p>See also:
+<p><a href="Standard_control_predicates.html">repeat</a>
+<br><i><font color="#008000"><font size=+1></font></font></i>&nbsp;
+<br><i><font color="#008000"><font size=+1></font></font></i>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

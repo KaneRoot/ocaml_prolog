@@ -1,0 +1,60 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Special files</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Special files</font></b>
+<br>&nbsp;
+<p>A Strawberry Prolog program consists of up to three files and some additional
+if defined:
+<br>&nbsp;1) a <b>.def</b> -file, where reserved words are defined;
+<br>&nbsp;2) an <b>.add</b> -file, where built-in predicates are declared
+together with some other definitions;
+<br>&nbsp;3) a <b>.pro </b>or
+<b>.spj</b> -file, where the 'very' Prolog
+'program' is found;
+<br>&nbsp;4) additional files if they are defined in the project.
+<p>The <b>.def</b> - and <b>.add</b> -files create the context for the
+correct understanding of the program by the compiler (just like <b>.h</b>
+-files in C).
+<p>Compilation begins with reading the <b>.def</b> -file, in order to establish
+correspondence between the numerical identifiers of the reserved words
+and their string representation. The numerical identifiers of the reserved
+words actually correspond to line numbers in the <b>.def</b> -file. This
+way the user can modify any reserved word. It is essential to preserve
+the order in this file.
+<p>The next step of compilation is to read the <b>.add</b> -file which
+defines some operators and the built-in predicates. This file lets one
+redefine standard built-in predicates, or define new ones.
+<p>After that is the compilation of the 'very program', that is contained
+in the <b>.pro </b>or
+<b>.spj</b> -file (the difference is that <b>.spj</b>
+-file contains some settings, but the <b>.pro</b> -file uses the settings
+of the default project),
+<p>A Strawberry Prolog program must contain a <b>.pro</b> -file (or <b>.spj</b>
+or <b>.txt</b> -file). If any of the others is missing, a corresponding
+standard file is used in its place. These files all have the name <b>Standard</b>
+and the corresponding extensions:
+<p><b>Standard.def </b>The file containing the <i>standard </i>reserved
+words.
+<p><b>Standard.add </b>The file containing the declarations of the <i>standard</i>
+built-in predicates.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

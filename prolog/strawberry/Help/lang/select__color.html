@@ -1,0 +1,66 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>select_ color</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>select_color</font></b>
+<br><font size=+0>Entity: <b>function</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>ColorReturn is select_color(ParentWindow, ColorStart)</font></b>
+<p>Invokes a standard select color dialog box using <b>ParentWindow</b>
+for parent window and <b>ColorStart</b> for start color (selected in the
+beginning). The new selected color is returned in <b>ColorReturn</b> .
+<br>&nbsp;
+<table BORDER >
+<tr>
+<td VALIGN=TOP>ColorReturn</td>
+
+<td VALIGN=TOP>variable to receive the selected color</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>ParentWindow</td>
+
+<td VALIGN=TOP>Parent window for the dialog box. Use _ for default.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>ColorStart</td>
+
+<td VALIGN=TOP>integer containing a color, you can use <a href="color.html">rgb</a>
+to create such integer.</td>
+</tr>
+</table>
+
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; Color is select_color(_,
+0), % 0 is black, 0xffffff is white</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; brush(Color),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; window(_, _, win_func(_),
+"select_color demo", 100, 100, 200, 200).</font></font></i>
+<p><i><font color="#008000"><font size=+1>win_func(paint) :- ellipse(50,50,150,150).</font></font></i>
+<p>See also:
+<p><a href="color.html">rgb</a>
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>brush</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>brush</font></b>
+<br><font size=+0>Entity: <b>predicate and function</b></font><b><font size=+0></font></b>
+<p><b><font size=+3>window_brush</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>brush(Color)</font></b>
+<br><b><font size=+0>brush(Color, Type)</font></b>
+<br><b><font size=+0>Brush is brush(Color)</font></b>
+<br><b><font size=+0>Brush is brush(Color, Type)</font></b>
+<p>Usage:
+<br><b><font size=+0>window_brush(Window, Color)</font></b>
+<br><b><font size=+0>window_brush(Window, Color, Type)</font></b>
+<p>Gets/sets the current filling color.
+<br>&nbsp;
+<table BORDER >
+<tr>
+<td VALIGN=TOP><b>Window</b></td>
+
+<td VALIGN=TOP>window or control handle, use _ (underscore) for default
+or current window&nbsp;</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>Color&nbsp;</b></td>
+
+<td VALIGN=TOP>integer containing a color, you can use <a href="color.html">rgb</a>
+to create such integer.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>Type</b></td>
+
+<td VALIGN=TOP>h Horizontal;
+<p>&nbsp;(-) Horizontal;
+<p>&nbsp;v Vertical;
+<p>&nbsp;! Vertical;
+<p>&nbsp;x Diagonal cross;
+<p>&nbsp;(\) Diagonal
+<br>(+) Cross;&nbsp;
+<p>(/) Diagonal;</td>
+</tr>
+</table>
+
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-window( _, _, win_func(_),
+"Brush Demo", 100, 100, 200, 200).</font></font></i>
+<p><i><font color="#008000"><font size=+1>win_func(paint):-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; brush(rgb(255,0,0)),
+rect(0,50,200,150),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; brush(rgb(0,0,255)),
+rect(50,0,150,200).</font></font></i>
+<p>See also:
+<p><a href="pen.html">pen</a>
+<br><a href="Getting/setting_text_color_and_background.html">color_text</a>
+<br><a href="Getting/setting_text_color_and_background.html">color_text_back</a>
+<br><a href="Getting/setting_text_color_and_background.html"></a>&nbsp;
+<br><a href="Getting/setting_text_color_and_background.html"></a>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

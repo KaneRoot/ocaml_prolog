@@ -1,0 +1,73 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <meta name="Author" content="Dimiter Dobrev">
+   <title>Type String</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Type String</font></b>
+<br>&nbsp;
+<p>String is any text which is surrounded with double quotes ( <b><font color="#3333FF">"</font></b>
+) or with symbol <b><font color="#3333FF">`</font></b>.
+<p>If you want to put in the string a quotation mark then you have to put
+instead of it two quotation marks ( <b><font color="#3333FF">""</font></b>
+) or <b><font color="#3333FF">\"</font></b>. In this way the compiler will
+understand that you want one quotation mark in the string instead to end
+it.
+<p>If the string is surrounded with the symbol <b><font color="#3333FF">`</font></b>
+then you have not problem to put inside a quotation mark ( <b><font color="#3333FF">"</font></b>
+) or <b><font color="#3333FF">\"</font></b>. In this case if you put <b><font color="#3333FF">""</font></b>
+then this will be exactly two symbols <b><font color="#3333FF">"</font></b>.
+To surround the string with the symbol <b><font color="#3333FF">`</font></b>
+instead of <b><font color="#3333FF">"</font></b> is very convenient when
+you want to generate HTML file and you have a lot of <b><font color="#3333FF">"</font></b>
+inside.
+<p>If the string is surrounded with the symbol <b><font color="#3333FF">`</font></b>
+then analogous you have to put instead of <b><font color="#3333FF">`</font></b>&nbsp;
+two symbols <b><font color="#3333FF">`</font></b> or <b><font color="#3333FF">\`</font></b>.
+<p>If you want to put in the string special symbol then you have to put
+instead of it a sequence which starts with <b><font color="#3333FF">\</font></b>.
+Here is the table of this special symbols and respective sequences:
+<p><b><font color="#3333FF">\\</font></b> \
+<br><b><font color="#3333FF">\"</font></b> "
+<br><b><font color="#3333FF">\`</font></b>&nbsp; `
+<br><b><font color="#3333FF">\n</font></b> new line
+<br><b><font color="#3333FF">\t</font></b>&nbsp; tab
+<p>If you put in your string a line break then the effect will be the same
+if you wrote <b><font color="#3333FF">\n</font></b>. If you want to go
+on a new line without putting line break in the string then you can use
+<b><font color="#3333FF">\</font></b>.
+If you place <b><font color="#3333FF">\</font></b> before the line break
+then this line break symbol will be not included in the string. The following
+three commands are equivalent:
+<p><i><font color="#008000"><font size=+1>write("First Line\nSecond Line")</font></font></i>
+<p><i><font color="#008000"><font size=+1>write("First Line</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Second Line")</font></font></i>
+<p><i><font color="#008000"><font size=+1>write("\</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;First Line</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Second \</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Line")</font></font></i>
+<p>If you write string using <b>write</b> predicate then special symbols
+will be printed directly. If you use the <b>writeq</b> predicate then all
+special symbols will be replaced with the respective sequence (which start
+with <b><font color="#3333FF">\</font></b>).
+<p>To work with strings use the built-in predicates and functions.
+<br>
+<hr>
+<center><a href="About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

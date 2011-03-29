@@ -1,0 +1,232 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <meta name="Author" content="Dimiter Dobrev">
+   <title>CGI Scripts</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Strawberry Prolog CGI Scripts</font></b>
+<br><font color="#FF0000"><font size=+1>(ONLY for Professional edition)</font></font>
+<br>&nbsp;
+<p>If you want to change one static web site and to put some active content
+in it then you need <b>CGI Script</b> . Here are some typical applications
+of <b>CGI Scripts</b> , which you can see in our site made as <b>Strawberry
+Prolog</b> <b>CGI Scripts</b> (you can find the source of these applications
+in the professional edition in <i>Prolog CGI</i> folder):
+<p>If you like to put a registration form.
+<br>If you like to recognize your users (by cookie) and to call them by
+name in their own language.
+<br>If you like to visualize some automatically changeable information
+(like the number of the registered users)
+<br>If you like to make search in a database (of registered users for example).
+<br>If you like to put a game in your site and to give the possibility
+to everyone to play it through the web.
+<br>If you like to make a chat room in your site.
+<p>It is impossible to make a good site without using this technology.
+Of course, you can use <b>CGI Scripts</b> which are not made specially
+for your site (like counters of the page visitors). Also you can pay to
+a professional programmer to write the <b>CGI Scripts</b> which you need.
+All this is possible but our advice will be to make alone all the functionality
+which you need as <b>Strawberry Prolog</b> <b>CGI Scripts</b> . This will
+be an easy and pleasant work. Another possibility is to use Perl but it
+is easier to study Prolog than Perl and it is much easier to write a program
+on Prolog than on Perl.
+<p>Here is your <b>Strawberry Prolog</b> <b>CGI Scripts</b> guide which
+will help you to make the functionality for your site. First you need to
+understand what is <b>CGI Script</b> and how it works.
+<p>A <b>CGI Script</b> is a program which resides on the <i>Web Server</i>
+usually in <b>cgi-bin</b> directory and when the script is invoked e.g.
+the user has made a request which contains a CGI executable (for example
+http://host/cgi-bin/myCGI.pro) then the <i>Web Server</i> executes the
+program and connects its output to the user's input, so everything that
+the CGI will print on its standard output will be sent to the user.
+<p>Simple <b>CGI Script</b> :
+<p><i><font color="#008000"><font size=+1>?- set_content_type("text/html"),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;write("Hello New User").</font></font></i>
+<p>First predicate sets the content type of the page to "text/html" and
+in this way notifies the browser that the type of the following content
+will be text or html and the browser will parse it if necessary and will
+show it to the corresponding user. The second predicate prints into the
+standard output "<i>Hello New User</i>" so the browser will receive a page
+containing only that string (the result will be the same if you create
+a text file containing only the string "
+<i>Hello New User</i> " and try
+to view it through a web browser).
+<p>SUMMARY: To make a web page viewable through a <b>Strawberry PrologCGI
+Script</b>you should create a file (
+<i>myCGI.pro</i> ) and place it into
+the <b>cgi-bin</b> directory of your <i>Web Server </i>that contains the
+following:
+<p><i><font color="#008000"><font size=+1>#!./strawberry</font></font></i>
+<p><i><font color="#008000"><font size=+1>&nbsp;?- set_content_type("text/html"),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;write("</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&lt;put your page source
+here></font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;").</font></font></i>
+<p>The first row of the file tells the operating system that it should
+pass the file as an argument to the <b>Strawberry Prolog</b> compiler.
+Page source can be in text or in HTML format. This text will be the output
+of your <b>CGI Script</b> . Of course, in this simple example the page
+source is static and this active page will look the same as the passive
+one which contains only the Page source.
+<p>IMPORTANT: In your "<i>page source</i> " you should replace every quotation
+mark with double quotation mark and every percentage mark with double percentage
+mark ( <i>"</i> -> <i>""</i> and <i>%</i> -> <i>%%</i> )
+<br>&nbsp;
+<p><b>Passing arguments to a CGI Script</b>
+<p>Usually when you call <b>CGI Script</b> then you pass some arguments
+to it. For example you may want to call one <b>CGI Script</b> with different
+arguments. You can put these arguments just after the name of the program
+separated with a question mark. For example:
+<p><i><font color="#008000"><font size=+1>http://host/cgi-bin/myCGI.pro?name=John&amp;password=test</font></font></i>
+<p>in this way your CGI will receive the arguments' name with a value of
+"John" and password with value "
+<i>test</i> ". To get the parameters,
+you should use the <i>getenv </i>and
+<i>get_html_form </i>functions:
+<p><i><font color="#008000"><font size=+1>Query is getenv("QUERY_STRING"),</font></font></i>
+<br><i><font color="#008000"><font size=+1>Name is get_html_form(_, "name",
+Query).</font></font></i>
+<p>The <i>Query</i> variable will contain "
+<i>name=John&amp;password=test</i>
+" and the <i>Name</i> variable will contain "<i>John</i>".
+<p>There are two ways to pass an argument to a CGI Script. The first which
+we described above is the <b>GET</b> method. In this method the arguments
+are visible in the address and their length is restricted up to 256 symbols.
+The second method for passing arguments is the <b>POST</b> method. By this
+method the fields in the HTML forms are passed.
+<p>When you submit a form then the content of the fields is passed as arguments
+to the <b>CGI Script</b> which is attached to this form. To get the arguments
+from a <b>POST</b>method use the following:
+<p><i><font color="#008000"><font size=+1>Query is getenv(post),</font></font></i>
+<p>If there are two fields in your form with the names: <i>name</i> and
+<i>password</i>
+then and if the user (web visitor) fills in these fields
+<i>John</i> and
+<i>test</i> respectively then the <b>CGI Script</b> which is attached to
+this form will receive query "
+<i>name=John&amp;password=test</i> " and
+that will be the value which will receive the <i>Query</i> variable.
+<br>&nbsp;
+<p><b>Converting a Strawberry Prolog program into a CGI Script</b>
+<p>Suppose you have written a <b>Strawberry Prolog</b>game and want to
+place it on a <i>Web Server,</i> in this way many people can see it and
+play it. The first thing you should do is to make the layout (the "
+<i>look
+and feel</i> ", the HTML page) of your game. To achieve this you can use
+your favorite
+<b>HTML Editor<i>. </i></b>Let's take for example the <i>Tick-Tack-Toe</i>
+game (take a look on it in our site). It is 3x3 table, you put "
+<i>X</i>
+" and the computer puts "
+<i>O</i> ", whoever makes three in a row, column
+or a diagonal wins. The game opens a new window with nine squares on a
+table. So the first thing you have to think of is to create a table (with
+your HTML Editor) and to put nine (blank) images in it. (Maybe you will
+need some GIF images too.) The next step is to remove all predicates (from
+the Windows game) which open (manipulate) windows, listen for the mouse
+click etc. You have to leave only the core of the game (the part that chooses
+the right move according to the position). As a Windows game your program
+was multi-step program (you play and the game receives your move and then
+it plays its next move). To make it run as a CGI Script you have to make
+it a single-step program (each time you have to pass the current position
+of the game to the CGI program together with your move and it has to return
+the next situation). You can keep the current position in a list for example
+<i>[[f,f,f],
+[f,f,f], [f,f,f]]</i> - nine empty squares, or <i>[[x,o,x], [f,f,f], [f,f,f]]</i>
+- <i>X,O,X</i> on the first row. You can pass this list each time you make
+a new move:
+<p><i><font color="#008000"><font size=+1>http://some/host/cgi-bin/Tick-Tack-Toe.pro?pos=[[f,f,f],[f,f,f],[f,f,f]]&amp;x=1&amp;y=2</font></font></i>
+<p>In this way you will tell the program what is the current position (empty
+table) and what is your move. The program should examine the position,
+to choose the right move and return the HTML page to the user. According
+to the new position (achieved after the move) the CGI should change the
+images on the new HTML page. This means that it should return your HTML
+page but modified. In the new HTML some of the blank images should be changed
+with images of X and O. Also in this new HTML each blank image has to have
+a link to the same <b>CGI Script</b> with arguments the new current position
+and the coordinates of the cell.
+<p>In this way the game goes on. When you press on one blank image then
+you say to the <b>CGI Script</b> what is the current position and what
+is your move. <b>CGI Script</b> starts, calculates its answer, sends it
+to you as a HTML page. After answering the <b>CGI Script</b> stops and
+forgets about you. Of course, you can cheat the program by changing the
+position in the URL to <i>[[x,x,x],[f,f,f],[f,f,f]] </i>- which will mean
+that you win! That is because this <b>CGI Script</b> doesn't know who are
+you and it believes the information which you send to it. It can be done
+in a different way and to remember the current position but in this case
+it needs to support a database of all users playing the game at the moment
+(they can be a lot) and to recognize them (by cookie or by their IP addresses).
+<p>Your CGI program should be something like the following:
+<p><i><font color="#008000"><font size=+1>#!/path/to/the/cgi-bin/strawberry</font></font></i>
+<p><i><font color="#008000"><font size=+1>?-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Query is getenv("QUERY_STRING"),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Pos is get_html_form(_,
+"pos", Query),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;X is scan(get_html_form(_,
+"x", Query)),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;Y is scan(get_html_form(_,
+"y", Query)),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;List is scan(Pos),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;choose(NewPos, List, X,
+Y),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;view(NewPos).</font></font></i>
+<p><i><font color="#008000"><font size=+1>choose(NewPos, OldPos, X, Y)
+:-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&lt;some game logic here>
+.</font></font></i>
+<p><i><font color="#008000"><font size=+1>view(NewPos) :-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;set_content_type("text/html"),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;write("</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&lt;your HTML page source
+here modified by NewPos ></font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;").</font></font></i>
+<br>&nbsp;
+<p><b>Tracing Prolog CGI Scripts</b>
+<p><b>CGI Scripts</b> are programs which run on the server and that makes
+their tracing difficult. <b>Strawberry Prolog</b> gives you the opportunity
+to create and trace <b>Prolog CGI Scripts</b> in the <b>Strawberry Environment</b>
+and to install them on your sever only after they are ready.
+<p>When you start a <b>CGI Script</b> in the <b>Strawberry Environment</b>
+then it prints your web page in the <b>Output window</b> in HTML format.
+If you know HTML format that can be enough to see if your program works
+correctly or not. An easier way to see the result of the program is to
+look on it through your web browser.
+<p>How to do this?
+<p>&nbsp;1. Save <b>Output window </b>as HTML file (Press Save As when
+Output is active. Give html extension to the new file).
+<br>&nbsp;2. Open with your web browser the file that you have just created.
+<p>Now you can start tracing.
+<br>&nbsp;1. Clear all in the <b>Output window </b>(Select all and delete).
+<br>&nbsp;2. Run your program.
+<br>&nbsp;3. Delete the <b>Yes</b> which is at the end of the Output and
+eventually <b>Compiling the file ... </b>which is in the beginning of it.
+<br>&nbsp;4. Save the Output file
+<br>&nbsp;5. Go in your web browser and press the refresh button.
+<p>In this way you can easily trace your <b>CGI Script</b> . Anyway you
+can have some problems with the paths of the images which are included
+in the resulting HTML page. This paths can force you to make small changes
+to your program before to put it on the server. One possible decision to
+avoid this problem is to make two folders on your hard disk (and the same
+on your server). First folder called <b>cgi-bin</b> and the second one
+called <b>Images</b> . Save the <b>Output</b> in the first folder and put
+the images which you need in the second one. In this case the path for
+images will be: "../Images/".
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

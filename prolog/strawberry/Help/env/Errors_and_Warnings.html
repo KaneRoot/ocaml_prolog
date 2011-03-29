@@ -1,0 +1,67 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Errors and Warnings</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Errors and Warnings</font></b>
+<p><b>Error 10: No sense at line X.</b> This error means that the string
+cannot be evaluated as a term. Here are some of the possible reasons:
+<p>An infix operator <b>minus (-)</b> is accepted like a prefix.
+<p>Example:
+<br><b>2-1</b> gives this error. To correct it you have to put a space
+between <b>minus</b> and <b>one</b> .
+<br>If you write <b>2- 1</b> , it will be OK.
+<p>An infix operator <b>minus (-)</b> is used like a prefix. (Minus is
+defined only like infix operator and is accepted like prefix only when
+it is glued to a number.)
+<p>Example:
+<br><b><i><font color="#008000"><font size=+1>X is -Y</font></font></i></b>
+gives this error. To correct it you have to put Y in <b>brackets</b> .
+<br>If you write <b><i><font color="#008000"><font size=+1>X is -(Y)</font></font></i></b>
+, it will be OK.
+<p>An infix operator <b>:-</b> is used like a prefix. (
+<b>:-</b> is defined
+only like infix operator.)
+<br>Example:
+<br><b><i><font color="#008000"><font size=+1>:- goal.</font></font></i></b>
+gives this error. To correct it use <b>?-</b> .
+<p>If you write <b><i><font color="#008000"><font size=+1>?- goal. </font></font></i></b>it
+will be OK.
+<p>An infix operator is accepted like one written in prefix notation. (If
+you have an operator <b>op</b> then you can write <b>X op Y</b> as well
+as <b>op(X, Y)</b> )
+<p>Example:
+<br><b>2+(1/2)</b> gives this error. To correct it you have to put a space
+between <b>plus</b> and <b>open bracket</b> .
+<br>If you write <b>2+ (1/2)</b> , it will be OK.
+<p>A functor is accepted like an infix operator.
+<p>Example:
+<br><b>write (X)</b> gives this error. To correct it you have to remove
+the space between <b>write</b> and <b>open bracket</b> .
+<br>If you write <b>write(X)</b> , it will be OK.
+<p>A space is written inside of the atom.
+<p>Example:
+<br><b>wri te(X)</b> gives this error. To correct it you have to remove
+this space.
+<br>If you write <b>write(X)</b> , it will be OK.
+<p>Some of the operators are not defined. Use Help/Operators to see which
+ones are defined and how they are defined.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

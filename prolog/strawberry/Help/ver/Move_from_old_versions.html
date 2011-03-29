@@ -1,0 +1,92 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <meta name="Author" content="Dimiter Dobrev">
+   <title>Move from old versions to this one</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Move from old versions to this one</font></b>
+<br>&nbsp;
+<p>This is a help tool which is provided for people who have programs which
+work with an old version of Strawberry Prolog but do not work with this
+one due to some small changes which we made in the built-in predicates.
+<p>All such changes are described here. In order to correct your program
+start from the last version with which your program is working and make
+all changes to the current version.
+<p><b>From version 1.6 to version 1.7</b>
+<p>The key word <b>built_in</b> is changed. If you have it in your program
+you should to replace it with <b>***</b>.
+<p><b>From version 1.2 to version 1.21</b>
+<p>In this version the predicate for is changed. If you have <b>for(I,A,B)</b>
+in the old version it would make a loop for <b>I</b> from <b>A</b> up to
+<b>B</b> but without <b>B</b>. In this version the loop will be from <b>A</b>&nbsp;
+to <b>B</b> (included).
+<p>The easiest way to correct this in your old programs is to replace <b>for(I,A,B)</b>
+with <b>for(I, A, B- 1)</b> everywhere. Note that in this version you can
+write expressions in the place of <b>A</b> and <b>B</b>. Analogically&nbsp;
+if you have <b>for(I,A,B,Step)</b> then replace it with <b>for(I,A,B- 1,Step)</b>
+if the <b>Step</b> is positive and with <b>for(I,A,B+1,Step)</b> if the
+<b>Step</b> is negative.
+<p>Other change is in the predicates <b>size</b> and <b>position</b>. Now
+they have one more argument which shows which is the window that is all
+about. The easiest way to correct your old programs is to replace everywhere
+<b>size(X,Y)</b> with <b>size(_,X,Y)</b> and analogically for the <b>position</b>.
+<p>If you use <b>brush(R,G,B)</b> where <b>R</b>, <b>G</b>, <b>B</b> mean
+reed, green and blue then you have to replace it with <b>brush(rgb(R,G,B))</b>.
+<p>Predicate <b>count_list</b> is changed with function and its name is
+<b>list_length</b>
+<p><b>From version 1.02 to version 1.2</b>
+<p>Many predicates now are functions and you have to change their syntax.
+For example is you have in your program <b>print(S, T)</b>, then you should
+to replace it with <b>S is print(T)</b>. The full list of predicates which
+became functions follows:
+<p><b>get</b>
+<br><b>get_text</b>
+<br><b>open</b>
+<br><b>parent</b>
+<br><b>print</b>
+<br><b>random</b>
+<br><b>rgb</b>
+<br><b>scan</b>
+<br><b>system_color</b>
+<br><b>select_file</b>
+<br><b>select_color</b>
+<p>In version 1.2 the way in which you can define functions is changed.
+For example, if you wish to define function <b>add(X,Y)</b> and to use
+it like <b>Result is add(2,2)</b> to obtain <b>4</b> then the old definition
+style is:
+<br><i><font color="#008000">add(Result, X, Y) :- Result is X + Y.</font></i>
+<p>and the new style is:
+<br><i><font color="#008000">Result is add(X,Y) :- Result is X + Y.</font></i>
+<p><b>From version 1.0 (beta release) to version 1.0 (beta release2)</b>
+<p>predicate <b>/</b> is changed with <b>//</b>.
+<br>predicate <b>get_time</b> is changed with <b>chronometer</b>
+<br>The argument of <b>wait</b> now is in seconds, not in centiseconds.
+Correct it by changing <b>Time</b> with <b>Time/100</b>.
+<br>The predicates <b>get</b>, <b>put</b>, <b>get_text</b> and <b>set_text</b>
+changed the places of their first two arguments.
+<p>The predicates <b>bitmap</b> and <b>icon</b> lost their last two arguments.
+<p><b>From version 0.7 to version 1.0 (beta release)</b>
+<p>The predicates: <b>pen</b>, <b>brush</b>, <b>window_brush</b>, <b>color_text</b>,
+<b>color_text_back,</b> <b>select_color</b> are changed. The change is
+that instead of three arguments for the color now they have only one argument.
+Correct them by changing of <b>Red</b>, <b>Green</b>, <b>Blue</b> with
+<b>rgb( Red, Green, Blue)</b>.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

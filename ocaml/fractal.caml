@@ -1,0 +1,56 @@
+placer le curseur en a b dans la fenetre graphique : moveto a b
+tracer un segment : lineto c d
+
+#load "graphics.cma";;
+open Graphics;;
+open_graph "";;
+
+let rec koch n a b c d = if n == 0 then 
+			(moveto a b; 
+			lineto c d;)
+			else
+			(
+			koch (n-1) a b ((2*a+c)/3) ((2*b+d)/3);
+			koch (n-1) ((2*a+c)/3) ((2*b+d)/3) ((a+c)/2-2*(d-b)/7) ((b+d)/2+2*(c-a)/7) ;
+			koch (n-1) ((a+c)/2-2*(d-b)/7) ((b+d)/2+2*(c-a)/7) ((a+2*c)/3) ((b+2*d)/3);
+			koch (n-1) ((a+2*c)/3) ((b+2*d)/3) c d;
+			);;
+			
+let vonkoch n = open_graph ""; (koch n 100 100 1400 100);;
+
+let rec dragonbis n a b c d = if n == 1 then 
+			(moveto a b; lineto c d;)
+			else
+			(
+			
+			dragonbis (n-1) a b ((a+c+d-b)/2) ((a+b-c+d)/2);
+			dragonbis (n-1) ((a+c+d-b)/2) ((a+b-c+d)/2) c d;
+			);;
+			
+let rec dragonbis n a b c d = if n == 1 then 
+			(moveto a b; lineto c d;)
+			else
+			(
+			(dragonbis (n-1) a b ((a+c+d-b)/2) ((a+b-c+d)/2));
+			(dragonbis (n-1) c d ((a+c+d-b)/2) ((a+b-c+d)/2));
+			);;
+
+let dragon n = open_graph ""; (dragonbis n 300 400 600 400);;
+
+			
+let dragon n = open_graph ""; (dragonbis n 450 600 900 600);;
+
+
+test perso (inutile)
+
+
+let rec etoilebis n a b c d = if n == 1 then 
+			(moveto a b; lineto c d;)
+			else
+			(
+			(etoilebis (n-1) a b ((a+c+d-b)/2) ((a+b-c+d)/2));
+			(etoilebis (n-1) c d ((a+c+d-b)/2) ((a+b-c+d)/2));	
+			(etoilebis (n-1) c ((a+c+d-b)/2) ((a+b-c+d)/2) d);					
+			);;
+
+let etoile n = open_graph ""; (etoilebis n 300 400 600 400);;

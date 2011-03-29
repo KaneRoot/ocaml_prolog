@@ -1,0 +1,52 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>line</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>line</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font><b><font size=+0></font></b>
+<p><b><font size=+3>fill_polygon</font></b>
+<br><font size=+0>Entity: <b>predicate</b></font>
+<br><font color="#FF0000"><font size=+0>Warning: This predicate is not
+available in the Light edition.</font></font>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>line(X1, Y1, X2, Y2, ... , Xn, Yn)</font></b>
+<p>Draws a line from <b>X1,Y1</b> to <b>Xn,Yn</b> using the current <a href="pen.html">pen</a>
+.
+<br>&nbsp;<b></b>
+<p><b>fill_polygon(X1, Y1, X2, Y2, ... , Xn, Yn)</b>
+<p>Draws a polygon using the points from <b>X1,Y1</b> to <b>Xn,Yn</b> with
+the current <a href="pen.html">pen</a> and fills it with the current <a href="brush.html">brush</a>.
+<p>All these predicates fail if any of their arguments is not a number.
+<br>&nbsp;
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-window( _, _, win_func(_),
+"Line demo", 100, 100, 300, 300).</font></font></i>
+<p><i><font color="#008000"><font size=+1>win_func(paint):-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; pen(2,rgb(255,0,0)),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; brush(rgb(0,0,255)),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; fill_polygon(0,0,200,200,0,100+100),</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; line(0,0,200,0,200,100+100).</font></font></i>
+<p>See also:
+<p><a href="rect.html">rect</a>
+<br><a href="ellipse.html">ellipse</a>
+<br><a href="ellipse.html"></a>&nbsp;
+<br><a href="ellipse.html"></a>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

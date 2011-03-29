@@ -1,0 +1,49 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Loop Check</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Loop Check</font></b>
+<br>&nbsp;
+<p>This is a very important feature of Strawberry Prolog which we expect
+to be available in version 2.0.
+<p>The idea of Loop Checking is coming from the difference between declarational
+and procedural semantic of Prolog programs. When you write a program you
+think in declarational semantic. You think of the program like a set of
+axioms and rules and you want to obtain all answers which follow from them.
+Unfortunately, the Prolog Interpreter works in the procedural semantic
+and gives you only a part of the answers, after that it can fail in infinite
+loop. Our purpose is to give you the opportunity to write some declaratively
+correct, but procedurally incorrect programs. The loop checker will make
+them running correct in the declarative sense which you have put in them.
+<p>It is nice how the class of the programs which are working correctly
+(in the declarational sense) is maximally big. That is why we are searching
+for an effective algorithm which recognizes a big amount of cyclings in
+Prolog. The purpose is to add this algorithm to our Prolog interpreter.
+In this way we will obtain an interpreter of the language stronger than
+Prolog, because cycling in Prolog programs will work and give the expected
+answer.
+<p>The Loop Checker will be realized on the basis of the works of Professor
+Dimiter Skordev and those of the author which he made under the supervision
+of Professor Skordev. Users of Strawberry Prolog who are interested in
+this problem can read the implementor's master's thesis "Periodical Cyclings
+in Prolog", that is available on our web page.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

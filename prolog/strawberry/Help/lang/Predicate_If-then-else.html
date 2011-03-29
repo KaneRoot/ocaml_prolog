@@ -1,0 +1,89 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Predicate If-then-else</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+3>-></font></b>
+<br><font size=+0>Entity: <b>predicate and function</b></font>
+<br>
+<hr WIDTH="100%">
+<p>Usage:
+<br><b><font size=+0>A1, ... , An -> B1, ... , Bm else C1, ... . Ck</font></b>
+<br><b><font size=+0>A1, ... , An -> B1, ... , Bm</font></b>
+<br><b><font size=+0>R is (G1, ... , Gn -> X else Y)</font></b>
+<p><b><font color="#3333FF"><font size=+1>Predicate:</font></font></b>
+<p>Usage:
+<br><b><font size=+0>A1, ... , An -> B1, ... , Bm else C1, ... . Ck</font></b>
+<br><b><font size=+0>A1, ... , An -> B1, ... , Bm</font></b>
+<p>The predicate <b>-> (if-then-else)</b> executes first the left goal
+<b>A1,
+... , An</b> and if it succeeds then executes the middle goal -
+<b>B1,
+... , Bm</b> , if it fails then executes the right goal - <b>C1, ... ,
+Ck</b> . If the right goal is missing then this is the same as if it was
+the empty goal. In this predicate you can write <b>;</b> instead of <b>else</b>
+. This is for compatibility with other Prolog compilers.
+<p>If you write:
+<p><i><font color="#008000"><font size=+1>?-a->b->c;d;e.</font></font></i>
+<p>then the last
+<b>;</b> will be accepted not as a part of <b>if-then-else</b>
+but as an operator <b>or</b> .
+<p>If you want to create more complicated expression with many <b>if-then-else</b>
+operators in it - then use round brackets - <b>(</b> and <b>)</b> .
+<p>Like this:
+<p><i><font color="#008000"><font size=+1>?-a-> (b->c;d);e.</font></font></i>
+<p>Be careful, in this case, to leave a space between <b>-></b> and <b>;</b>
+and <b>(</b> , otherwise you can obtain the error <b>No sense</b> .
+<p>Look also at the function <b>-> (if-then-else)</b> .
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?-</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; yes_no("1","",?) -></font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp; (yes_no("2","",?)
+-></font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+write(a), nl</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp; else</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+write(b), nl</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp; )</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; else (yes_no("3","",?)
+-></font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp; write(c),
+nl</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; else</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;&nbsp;&nbsp; write(d),
+nl</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp; ).</font></font></i>
+<p><b><font color="#3333FF"><font size=+1>Function:</font></font></b>
+<p>Usage:
+<br><b><font size=+0>R is (G1, ... , Gn -> X else Y)</font></b>
+<p>If you use <b>-></b> as a function then <b>G1, ... , Gn</b> have to
+be an atomic goals and <b>X</b> and
+<b>Y</b> have to be any expressions.
+If the goal <b>G1, ... , Gn</b> succeeds then this function returns the
+value of the expression <b>X</b>, otherwise returns the value of the expression
+<b>Y</b>.
+<p>Example:
+<p><i><font color="#008000"><font size=+1>?- write(yes_no("Say","one or
+two",?)-> 1 else 2).</font></font></i>
+<br>&nbsp;
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

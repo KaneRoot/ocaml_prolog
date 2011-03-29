@@ -1,0 +1,184 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Main predicates</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Main predicates</font></b>
+<br>&nbsp;
+<p><b>Control predicates:</b>
+<p><a href="op.html">op</a> defines an operator
+<br><a href="Standard_control_predicates.html">true</a> always succeeds
+<br><a href="Standard_control_predicates.html">fail</a> always fails
+<br><a href="Standard_control_predicates.html">once</a> executes a goal,
+but it is not re-executable
+<br><a href="call.html">call</a> starts a goal
+<br><a href="Standard_control_predicates.html">! (cut)</a> prevents all
+backtracking points between it and its parent
+<br><a href="Predicate_OR.html">; (or)</a> executes the left goal and if
+fails or on <b>Next Answer</b> executes the right one
+<br><a href="Predicate_If-then-else.html">-> (if-then-else)</a> if the
+most left goal succeeds then executes the next goal, if it fails then executes
+last goal.
+<br><a href="negation.html">not</a> Prolog negation (like as fail_if)
+<br><a href="negation.html">fail_if</a> Prolog negation
+<br><a href="functor_predicate.html">functor</a> checks a functor's name
+and arity
+<br><a href="findall.html">findall</a> makes a list of all success
+<br>&nbsp;
+<p><b>Strawberry functions:</b>
+<p><a href="of.html">of</a> that X which satisfy Y
+<br><a href="count_successes.html">count_successes</a> count the successes
+of a goal
+<br><a href="Predicate_If-then-else.html">function if then else</a> function
+if-then-else
+<br><a href="list_length.html">list_length</a> returns the length of a
+list
+<br><a href="true_value.html">true_value</a> returns one or zero
+<br><a href="min.html">min</a> returns the minimum
+<br><a href="min.html">max</a> returns the maximum
+<br>&nbsp;
+<p><b>Loops predicates:</b>
+<p><a href="Standard_control_predicates.html">repeat</a> always tries to
+get one more answer
+<br><a href="for.html">for</a> doing a loop
+<br>&nbsp;
+<p><b>Execution control:</b>
+<p><a href="trace.html">trace</a> switches program execution to trace mode
+<br><a href="terminate.html">terminate</a> terminates the program and displays
+a message
+<br><a href="execute.html">execute</a> starts the execution of other program
+(usually *.EXE)
+<br><a href="shell_execute.html">shell_execute</a> opens a file by using
+it extension.
+<br><a href="not_deeper_than.html">not_deeper_than</a> temporally restricts
+the stack size
+<br>&nbsp;
+<p><b>Input and Output predicates:</b>
+<p><a href="read.html">read</a> reads a term using a dialog box
+<br><a href="IO_predicates.html">write</a> writes a term
+<br><a href="IO_predicates.html">writeq</a> writes a term (without calculating
+it)
+<br><a href="IO_predicates.html">nl</a> prints a new line
+<br>&nbsp;
+<p><b>Dialogs:</b>
+<p><a href="Message_dialog_box.html">message</a> creates a message dialog
+box
+<br><a href="yes_no_dialog_box.html">yes_no</a> opens a dialog box with
+a yes-no question to be answered
+<br>&nbsp;
+<p><b>Knowledge base manipulation:</b>
+<p><a href="Asserting_clauses_in_the_run-time_database.html">assert</a>
+appends a clause to the run-time database
+<br><a href="Asserting_in_the_run-time_database_and_in_the_program.html">assert_in</a>
+appends a clause both to the run-time database and to the source
+<br><a href="Asserting_clauses_in_the_run-time_database.html">asserta</a>
+appends a clause to the run-time database (in the beginning)
+<br><a href="Asserting_in_the_run-time_database_and_in_the_program.html">asserta_in</a>
+appends a clause both to the run-time database and to the source (in the
+beginning)
+<br><a href="Retract_predicates.html">retract</a> retracts a clause from
+the run-time database
+<br><a href="Retract_predicates.html">retract_in</a> retracts a clause
+both from the run-time database and from the source
+<br><a href="Retract_predicates.html">retractall</a> retracts all occurrences
+of a clause from the run-time database
+<br><a href="set.html">set</a> retracts a clause and assert another one
+in place of it
+<p><b>File Manipulation:</b>
+<p><a href="open.html">open</a> opens a file
+<br><a href="open.html">close</a> closes a file
+<br><a href="file_IO.html">writef</a> writes the string in a file
+<br><a href="file_IO.html">readf</a> reads a string from a file
+<br><a href="file_IO.html">readln</a> reads a line from a file
+<br><a href="file_IO.html">feof</a> checks for a end-of-file
+<br><a href="file_manipulation.html">set_current_directory</a> sets the
+current directory.
+<br><a href="file_manipulation.html">get_current_directory</a> retrieves
+the current directory.
+<br><a href="file_manipulation.html">create_directory</a> creates a new
+directory.
+<br><a href="file_manipulation.html">remove_directory</a> removes a directory.
+<br><a href="file_manipulation.html">delete_file</a> deletes a file.
+<br><a href="get.html">get</a> gets a byte or integer from a file
+<br><a href="get.html">put</a> puts a byte or integer in to a file
+<br><a href="set_pos.html">set_file_pos</a> sets the file pointer
+<br><a href="set_pos.html">get_file_pos</a> returns the position of the
+file pointer
+<br><a href="select_file.html">select_file</a> invokes an open/save file
+dialog box
+<br>&nbsp;
+<p><b>Time:</b>
+<p><a href="chronometer.html">chronometer</a> gets time intervals in milliseconds
+<br><a href="get_time.html">get_time</a> gets current time
+<br><a href="get_date.html">get_date</a> gets current date
+<br><a href="wait.html">wait</a> waits time interval
+<br>&nbsp;
+<p><b>Special effects:</b>
+<p><a href="=__.html">=..</a> makes functor and arguments as a list
+<br><a href="beep.html">beep</a> produces a short beep
+<br><a href="cursor.html">cursor</a> sets the cursor to one of the standard
+cursors
+<br>&nbsp;
+<p><b>OLE and ActiveX:</b>
+<p><a href="OLE.html">server</a> opens an OLE server
+<br><a href="OLE.html">. (point)</a> sets and gets property, invokes method
+<br><a href="OLE.html">close</a> close OLE server
+<br>&nbsp;
+<p><b>E-mail control:</b>
+<p><a href="e-mail.html">logon</a> Log on as an e-mail user
+<br><a href="e-mail.html">logoff</a> Log off as an e-mail user
+<br><a href="e-mail.html">send_mail</a> send an e-mail letter
+<br><a href="e-mail.html">read_new_mail</a> reads e-mail letters
+<br><a href="e-mail.html">s_mail</a> sends mail (ONLY for UNIX)
+<br>&nbsp;
+<p><b>Prolog CGI Scripts</b>
+<p><a href="CGI.html">getenv</a> returns the environment value
+<br><a href="CGI.html">get_environment_arg</a> returns a part of a string
+<br><a href="CGI.html">get_html_form</a> returns a form field
+<br><a href="CGI.html">set_content_type</a> sets the content type
+<br><a href="CGI.html">set_cookie</a> sets a cookie on the client's browser
+<br><a href="CGI.html">get_program_argument</a> returns the program argument
+passed from the command line
+<br>&nbsp;
+<p><b>Sockets support</b>
+<p><a href="socket.html">socket</a> returns a client socket
+<br><a href="socket.html">read_sock</a> reads a string from the socket
+<br><a href="socket.html">write_sock</a> writes the string in the socket
+<br>&nbsp;
+<p><b>SQL support</b>
+<p><a href="SQL.html">mysql_connect</a> opens a connection to MYSQL server
+<br><a href="SQL.html">mysql_select_db</a> selects the database from MYSQL
+server
+<br><a href="SQL.html">mysql_query</a> executes the Query on selected database
+on the MYSQL server
+<br><a href="SQL.html">mysql_store_result</a> stores the result from the
+execution of a query
+<br><a href="SQL.html">mysql_fetch_row</a> returns the next row from the
+MYSQL result
+<br><a href="SQL.html">mysql_num_fields</a> returns the number of the fields
+from returned MYSQL result
+<br><a href="SQL.html">field</a> returns a field from a row
+<br><a href="SQL.html">mysql_free_result</a> frees the MYSQL result
+<br><a href="SQL.html">mysql_eof</a> checks if the end of the result is
+reached
+<br><a href="SQL.html">close</a> closes the MYSQL connection
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

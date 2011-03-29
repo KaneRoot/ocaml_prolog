@@ -1,0 +1,159 @@
+individu(X) :- personne(X,_).
+X est un individu si X est une personne d'âge quelconque.
+le sens logique des clause
+Celui d'une implication où les variables sont quantifiées universellement.
+A(X) :- b(X),c(X).
+Quelque-soit X (b(X) et C(X)) => A(X).
+A(X) :- b(X,Y).
+
+Quelque-soit X ( il existe Y b(X,Y)) => A(X)
+
+A(X) est vrai s'il existe un Y tel que b(X,Y) est vrai
+
+remplacer des buts par d'autres buts
+	-> chaînage arrière
+
+raisonnement de Prolog
+2 principes : 
+	- explorer les règles de haut en bas
+	- explorer la liste des buts de gauche à droite
+
+
+	bonne_humeur(X)
+	/		|			\
+argent(X), vacances(X), soleil
+
+
+Premier fait F1 :
+argent(jean).
+
+Les nouveaux buts : 
+vacances(jean), soleil
+
+R1
+vacances(aout), soleil => échec
+
+F2: X = alain
+vacances(alain), soleil
+...
+
+BEAU BORDEL.
+
+
+principes de raisonnement
+1. En un point du raisonnement ne s'occupe que du but le plus à gauche
+2. Pour satisfaire le but en question 
+	- rechercher dans l'ordre du programme la 1ère règle non déjà essayée à ce point du raisonnement et dont la tête est compatible avec le but
+	- remplacer dans la liste de buts le premier but par le corps de cette règle (en faisant les substitutions nécessaires)
+3. À chaque fois qu'un succès ou un échec a lieu on va revenir en arrière à la plus récente liste de buts où une règle pouvait être utilisée et ne l'a pas été (Backtracking)
+
+Ce raisonnement se représente par un arbre de raisonnement aussi appelé arbre de recherche parcouru en profondeur d'abord.
+La compatibilité entre un but et une tête de règle -> on dit qu'il sont unifiables.
+
+La notion de foncteurs:
+le "l" et le "a" sont des foncteurs (au symbole de fonction)
+Dans l'exemple chaque fait du programme peut être représenté par un arbre 
+		bibliotèque
+		|									\
+	____e___________________________		jean
+	|				\				\
+____a___			atoujours plus		c
+|		\								|	\
+de_closets français					grasset		1982
+
+
+bibliotèque(l(X,Y,c(gallimard,_)),jean).
+X = a(borges, jorge_louis)
+Y = enquêtes
+
+X = a(hugo, victor)
+Y = les_misérables.
+
+bibliotèque(X,pierre), bibliotèque(X, jean).		=== Le livre commun à jean et à pierre.
+
+
+LE CUT.
+Définition:		noté !   prédicat toujours vrai
+	- agit sur la façon dont l'arbre de raisonnement est parcouru.
+	- Sert à éviter les explorations inutiles.
+	- Sert à contrôler le déroulement d'un programme.
+Lorsque le CUT s'efface il coupe les choix en suspend portant sur le but qui a introduit le CUT et sur tous les buts effacés depuis.
+
+Combinaison du CUT et du FAIL défini la négation d'un prédicat cond(X)
+not_cond(X) :- cond(X), !, fail.
+not_cond(X).
+
+not_cond(X) va renvoyer faux en premier, puis on va voir la seconde règle ce qui va donner vrai (dans tous les cas).
+
+Remarque : fail est toujours faux.
+
+UTILISATION du CUT pour exprimer des conditions complexes.
+
+Schéma 1 : 
+condition(X) :- cond1(X),cond2(X), ... , condn(X), ... , fail.
+condition(_).
+
+condition(X) donne un succès si cond1(X) ou cond2(X) ou ... condn(X) donne un échec.
+
+Schéma 2 :
+condition(X) :- cond1(X), ! , fail.
+condition(X) :- cond2(X), ! , fail.
+condition(X) :- cond3(X), ! , fail.
+condition(X) :- condn(X), ! , fail.
+
+condition(_).
+
+Si toutes les conditions sont fausses alors ça renvoie vrai.
+
+La combinaison des 2 Schémas permet de traiter des arrangements quelconques de "et" et de "ou".
+
+condition(X) :- condA(X),condB(X), !, fail.
+condition(X) :- condC(X), !, fail.
+condition(_).
+
+condition(X) est vrai si not(condA(X)) ou not(condB(X)) et not(condC(X)).
+
+max1(X,Y,M) :- X =< Y, M:=Y.
+max1(X,Y,M) :- X > Y, M:=X.
+
+max2(X,Y,M) :- X =< Y, ! , M:=Y.
+max2(X,Y,M) :- X > Y , M:=X.
+
+max3(X,Y,M) :- X =< Y , ! , M:=Y.
+max3(X,Y,M) :- M:=X.
+
+Le cut permet de sélectionner une règle.
+La définition du CUT implique que si il s'efface dans une règle ayant 
+	pour tête pred(X) alors les autres règles de prod(X) ne sont plus prises en compte.
+pred(X) :- preda(X).
+Rend ineffective les autres règles du "paquet" pred.
+
+BOUCLES
+répéter.
+répéter :- répéter.
+
+boucle :- répéter, random(X), write(X), fail.
+
+
+
+boucle(0).
+
+boucle(N) :- N > 0, random(X), write(X), boucle(N -1).
+
+Introduction aux listes.
+1 . Notation avec les crochets []
+ex: [1,2,3,4]
+liste vide : []
+De manière générale la liste L de tête E et de queue Q est noté [E|Q]
+
+[1,2,3,4]	= [1 | [2,3,4]]
+			= [1 | 2 | [3,4]]
+
+appartient(X,[1,2,3,4])
+
+longueur([1,2],X)
+R1	/
+longueur([2],X')  X:=X'+1.
+longueur([],X")  X'=X"+1, X=X' +1.
+etc.
+

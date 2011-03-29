@@ -1,0 +1,155 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <meta name="Author" content="Dimiter Dobrev">
+   <title>Define functions and predicates</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>Define functions and Built-in predicates</font></b>
+<br>&nbsp;
+<p>In Strawberry Prolog you have the unique possibility to define your
+own functions and built-in predicates. Here you can normally ask the question:
+What is the difference between standard Prolog predicates and built-in
+predicates. Usually in the most Prolog compilers built-in predicates are
+called to such predicates you cannot define alone and that is why they
+are defined in the system. In Strawberry Prolog the situation is different,
+you can define your own built-in predicates. So what is the difference
+between built-in and standard predicates? You define built-in predicates
+with fixed types and fixed number of the arguments. When these predicates
+are executed then the types and the number of the arguments are checked
+and if it is not correct then an error message is displayed. Also, in the
+built-in predicates you can give an expression as an argument. This expression
+will be calculated before execution of the built-in predicate, then the
+predicate will be executed and the value of the expression will be given
+to it on the place of respective argument.
+<p>Maybe you are a little bit disappointed by such built-in predicates
+because you expected that they are written in another language like C and
+also that they are hidden somewhere in the system and you cannot see their
+definition. It doesn't matter that your predicate is built-in or not, if
+you want to make it written in C or in another language then you can do
+this and put it in a DLL file or in OLE server. After that you can call
+such a function from Strawberry Prolog. If you want to hide your predicate's
+definition then you can put it in Standard.add file or you can create your
+own ADD file to contain your built-in predicates and other often used by
+you Prolog source.
+<p>Well, but how to define functions and Built-in predicates in Strawberry
+Prolog. Here is how such definitions look like:
+<p><i><font color="#008000"><font size=+1>R is f(X</font><font size=+0>1</font><font size=+1>,
+X</font><font size=+0>2</font><font size=+1>, ... , X</font><font size=+0>n</font><font size=+1>)
+:- G</font><font size=+0>1</font><font size=+1>, G</font><font size=+0>2</font><font size=+1>,
+... , G</font><font size=+0>m</font><font size=+1>.</font></font></i>
+<br><i><font color="#008000"><font size=+1>*** p(X</font><font size=+0>1</font><font size=+1>,
+X</font><font size=+0>2</font><font size=+1>, ... , X</font><font size=+0>n</font><font size=+1>)
+:- G</font><font size=+0>1</font><font size=+1>, G</font><font size=+0>2</font><font size=+1>,
+... , G</font><font size=+0>m</font><font size=+1>.</font></font></i>
+<p>Where Xi is variable with some specifiers eventually. Here is the list
+of all possible types specifiers which you can use in the definition of
+functions and of built-in predicates:
+<p><b>int X </b>- integer
+<br><b>float X</b> - floating point number
+<br><b>str X </b>- string
+<br><b>obj(X)</b> - object
+<br><b>var(X)</b> - variable
+<br><b>term(X)</b> - term, i.e. no one from the above
+<br><b>io(X)</b> - used for input and output
+<br><b>num(X)</b> - the same as <b>int float X</b>
+<br><b>X</b> - the same as <b>int float str obj(var(term(X)))</b> , i.e.
+calculate and don't check the type
+<br><b>nocalc(X)</b> - this means that this argument should not be calculated
+and will be given as a term as this is with the standard Prolog predicates.
+<p>The first three specifiers are defined as prefix operators and that's
+why they don't need brackets. You can define one argument using several
+specifiers. In this case the meaning is OR, i.e. the value must be one
+of the specified types. The row and repetition of specifiers are not important,
+i.e <b>int float X</b> is the same as <b>float int X</b> or even <b>int
+int float X</b> . You cannot combine the specifier nocalc with any of the
+rest.
+<p>As you can see the definition of built-in predicate is the same as the
+definition of the standard one with the difference that you have to put
+the key word *** and the arguments cannot be any terms like this is in
+the standard predicates but they must be only variables, eventually with
+some specifiers. You can define one built-in predicate (or function) with
+more than one clause as with standard predicates but in this case in all
+definition clauses the number of variables (in the head) and all specifiers
+must be the same. For example:
+<p><i><font color="#008000"><font size=+1>*** p(X</font><font size=+0>1</font><font size=+1>,
+X</font><font size=+0>2</font><font size=+1>, ... , X</font><font size=+0>n</font><font size=+1>)
+:- body_</font><font size=+0>1</font><font size=+1>.</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;.</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;.</font></font></i>
+<br><i><font color="#008000"><font size=+1>&nbsp;.</font></font></i>
+<br><i><font color="#008000"><font size=+1>*** p(X</font><font size=+0>1</font><font size=+1>,
+X</font><font size=+0>2</font><font size=+1>, ... , X</font><font size=+0>n</font><font size=+1>)
+:- body_</font><font size=+0>m</font><font size=+1>.</font></font></i>
+<p>Here if the first body fails the compiler will try to satisfy the next
+one and so on.
+<p>Let's see an example for defining of function and for built-in predicate:
+<p><i><font color="#008000"><font size=+1>R is add(X, Y) :- R:=X+Y.</font></font></i>
+<br><i><font color="#008000"><font size=+1>*** my_write(X) :- beep, writeq(X),
+nl.</font></font></i>
+<p>What we have defined? The new function <b>add</b> is actually the same
+as the <b>+</b> function which we already have. You can put it in expressions
+and it will calculate the expressions <b>X</b> and <b>Y</b> and after that
+will execute the body of the function where it will calculate the value
+of R. The only small difference between <b>add</b> and <b>+</b> is that
+the first will accept any kind of expressions for <b>X</b> and <b>Y</b>
+with the difference of <b>+</b> which accepts only integer, float and string
+values for them. This means that you can give two variables or terms for
+<b>X</b>
+and <b>Y</b> and <b>add</b> will accept them. Anyway, when the execution
+of the body of <b>add</b> starts you will receive an error message from
+the function <b>+</b> . This message will say that the arguments of
+<b>+</b>
+cannot be variables or terms but you will not get such a message for the
+function <b>add</b> .
+<p>If you want then you can make a type check in the <b>add</b> function.
+Let's say that we want to check whether their arguments are integer or
+float. Then we can define add as follows:
+<p><i><font color="#008000"><font size=+1>R is add(int float X, int float
+Y) :- R:=X+Y.</font></font></i>
+<p>Now our <b>add</b> function is like <b>+</b> but only for integer and
+float numbers. If we try to concatenate strings with it then we will receive
+an error message which says that the arguments can not be strings.
+<p>The built-in predicate <b>my_write</b> is the same as <b>write</b> predicate
+(only one beep and one new line are small differences). If we call <b>my_write(2+2)</b>
+in our program then what will be written in the Output window? Will it
+be <b>4</b> as if we call write or will it be <b>2+2</b> as if we call
+<b>writeq</b>
+. The predicate <b>my_write</b> will write <b>4</b> although we use <b>writeq</b>
+in its body because the expression will be calculated before the execution
+of the body. If we want to make <b>my_write</b> like
+<b>writeq</b> then
+we should define it as follows:
+<p><i><font color="#008000"><font size=+1>*** my_write(nocalc(X)) :- beep,
+writeq(X), nl.</font></font></i>
+<p>When defining functions and built-in predicates you can use also the
+operator <b>:--</b> instead of <b>:-</b> . What is the difference? After
+the compilation all clauses which have the same heads are represented as
+a chain. Every one has a pointer to the next. So, when the program is executed
+if the first clause from the chain fails then the interpreter takes the
+next one. If you define a clause using <b>:--</b> instead of <b>:-</b>
+then this clause will have a chain pointer to itself. This mean that this
+clause will be recalled forever (the same as if this clause was infinitely
+many times in the program). For example by <b>:--</b> is defined the predicate
+repeat.
+<p>For examples of functions defined on Prolog is a good idea to look at
+<font size=+1>Strawberry
+functions</font> . Their definitions are in the Standard.add file.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

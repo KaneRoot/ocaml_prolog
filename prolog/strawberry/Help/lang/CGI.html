@@ -1,0 +1,54 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>CGI</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><font size=+0>Prolog CGI Scripts</font>
+<br><font color="#FF0000"><font size=+1>(ONLY for Professional edition)</font></font>
+<p><b>String2 is getenv(String1)</b>
+<p>returns the environment value of the String1 ( QUERY_STRING, REMOTE_ADDR,
+HTTP_COOKIE etc.)
+<p><b>String is getenv(post)</b>
+<br>returns the value of the form which is submitted using POST method
+<p><b>String2 is get_environment_arg(INT, String1)</b>
+<br>returns the Int part of the String1 (all parts of String1 are separated
+by &amp; or ? signs)
+<p>It is usually used to get the value of the submitted fields.
+<p><b>tring3 is get_html_form(INT, String1, String2)</b>
+<br>returns the value of the INT field which has the name of String1 from
+the String2
+<p>The difference from get_environment_arg is that here the value is decoded.
+INT and String1 can be left _ which means default.
+<p><b>set_content_type(String)</b>
+<br>sets the content type of the following text (for CGI ONLY) for Example
+"text/html", "image/jpg" etc.
+<p><b>set_cookie(Field, Path, Expiration)</b>
+<br>sets a cookie on the client's browser. The Field contains something
+like "ID=John" The Path must contain the directory on the server on which
+files the cookie will be send to. For example "/" sets the cookie to all
+files from your server. The Expiration must contain the full date when
+the cookie will expire for example "Monday, 28-Feb-00 10:00:00 GMT". If
+the Expiration is not set the cookie will expire when the user ends the
+session.
+<p><b>Argument is get_program_argument(ArgNumber)</b>
+<br>returns the program argument passed from the command line
+<p>
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center>
+
+</body>
+</html>

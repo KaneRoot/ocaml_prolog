@@ -1,0 +1,89 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>OLE</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><b><font size=+0>OLE and ActiveX</font></b>
+<br><font color="#FF0000"><font size=+0>Warning: This functions are not
+available in the Light edition.</font></font>
+<p>Strawberry Prolog supports OLE Automation - COM and ActiveX. This enables
+you to command standard programs like MS Word or Excel using your Strawberry
+Prolog program. This will open opportunities to incorporate such&nbsp;
+programs into your Prolog program. This is not an absolutely new opportunity
+because you can already do this by Visual Basic, Delphi and Visual C++.
+However, Prolog (especially Strawberry Prolog) has definite advantages
+over other program environments and they are:
+<p>&nbsp;1. Basic is suitable only for short programs but when the program
+becomes longer it gets messy.
+<p>&nbsp;2. Delphi and Visual C++ are known as environments for professionals
+not only because you can create professional work using them but also because
+you need so much time to study through them that it is worth taking it
+on only if this is your profession.
+<p><b>If you want to command another program (server)</b> then you have
+to know its commands (methods and properties). You can use the tool Object
+Browser (from menu Tools). With the help of this tool you can see all OLE
+servers which are installed on your computer. Also you can see their methods
+and properties. You can use any other description of this server (interface)
+provided by the authors of the server.
+<p><b>Where to find a description of the server:</b> We cannot say in the
+general case but for the most often used servers we will provide information
+and links to sources documentation. If you want to use Microsoft Office
+then we offer to visit Microsoft Office Developers page. If you want to
+use some other server turn to the company which made it. Most commercial
+applications support OLE Automation. This is the case of AutoCad 14 and
+of many products of Microsoft like Word, Excel, Developers Studio etc.
+Keep in mind that some programs do not support OLE Automation (are not
+written as servers) and cannot be ruled from outside.
+<p><b>Predicates for OLE Automation:</b> If you want to call a server then
+you have first to open it. This can be done with the function:
+<p><b>Server is server(ServerName)</b>
+<p>Here has to be a string containing the name of the server. You can take
+this name from the Object Browser. This function will return in <b>Server</b>
+the object server and you should to use it to invoke its methods and to
+set and get its properties.
+<p>If you want to invoke method then use the function (or predicate) point.
+What to use (function or the predicate) depends on that do you need the
+return value of this predicate.
+<p><b>R is Server.MethodName(Arg1, ... , Argn)</b>
+<br><b>Server.MethodName(Arg1, ... , Argn)</b>
+<p>Here <b>Server</b> has to be instantiated with an open server and <b>MethodName</b>
+has to be a string containing the name of one of the methods of this server.
+You can take this name also from the Object Browser. The arguments has
+to be from the types which this method needs.
+<p>If you want to get property then use again the function point. You can
+put in any expression <b>Server.PropertyName</b> where <b>PropertyName
+</b>is the string containing the name of one of the properties of this
+server. You can take this name also from the Object Browser. For exampele
+you can get property as follows:
+<p><b>X is Server.PropertyName</b>
+<p>If you want to set property then it is easy again. Simply type this:
+<p><b>Server.PropertyName := Value</b>
+<p>Here <b>Value</b> has to be this value which you want to set to this
+property. Here as you see := can be used as set property. Of course, this
+operation is stable on backtracking.
+<p>When you want to close one server then use the predicate <b>close</b>
+in this way:
+<p><b>close(Server)</b>
+<p>Here <b>Server</b> has to be instantiated with an open server which
+you want to close.
+<p>Examples:
+<p>&nbsp;OLE
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

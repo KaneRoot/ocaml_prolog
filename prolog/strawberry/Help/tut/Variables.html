@@ -1,0 +1,61 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Variables</title>
+</head>
+<body>
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td><a href="../index.html"><img SRC="../images/contents.gif" NOSAVE BORDER=0 height=39 width=91></a><a href="http://www.dobrev.com/chat.html"><img SRC="../images/chat.gif" NOSAVE BORDER=0 height=39 width=57></a><a href="http://www.dobrev.com"><img SRC="../images/b_sp.gif" NOSAVE BORDER=0 height=39 width=105></a></td>
+
+<td>
+<div align=right><img SRC="../images/s_help.gif" NOSAVE height=43 width=302></div>
+</td>
+</tr>
+</table>
+
+<hr><i><font color="#010100"><font size=+1>Variables</font></font></i>
+<br>&nbsp;
+<p>Variables in Prolog are a means to name <a href="Terms.html">terms</a>
+that become known at run-time.
+<p><b>A variable's name starts with a capital letter</b> or <b><i><font color="#008000"><font size=+1>_</font></font></i></b>
+, followed by an arbitrary sequence of letters, digits and <b><i><font color="#008000"><font size=+1>_</font></font></i></b>
+s. The variable, whose name is just <b><i><font color="#008000"><font size=+1>_</font></font></i></b>
+, has a special role in Prolog. It is called the <a href="The_anonymous_variable.html">anonymous
+variable</a>.
+<p><b>A variable gets allocated, when</b> the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">clause</a>
+(fact or rule) it occurs in is about to be applied. A variable does not
+get deallocated after successfully satisfying the <a href="Overall_structure_of_Strawberry_Prolog_`programs'.html">goals</a>
+that comprise the successful application of this clause. Rather, it gets
+deallocated when the application of the <a href="Prolog_text_execution.html">clause</a>
+it got allocated in is cancelled in order, to e.g. resatisfy the goal that
+launched it, by a backward step.
+<p><b>From its allocation a variable is available for instantiation</b>
+, i.e. for assigning it a term to stand for. The same variable can be instantiated
+and then uninstantiated unlimitedly many times. This is so because, after
+its allocation, the variable in general becomes part of terms, that get
+passed to subgoals, given rise by the application of the clause which caused
+the variable to get allocated. Here <a href="Prolog_text_execution.html">forward
+steps</a> and <a href="Prolog_text_execution.html">backward steps</a> can
+cause instantiation and uninstantiation both of locally allocated variables
+and earlier allocated ones.
+<p><b>A variable loses its value</b> , i.e. gets <b>uninstantiated</b>
+again, only after backward steps on a clause that caused it to get a value
+- get instantiated. Note that, a loss of value, and not of allocation,
+is what happens. The backward step doesn't need to be on the clause that
+caused allocation.
+<p>It is sometimes possible for one variable to get instantiated to a term
+that consists of just another variable. This case of <a href="Unification.html">unification</a>
+is remarkable for its violating the <i>branch-replaces-leaf</i> intuition
+for the effect of instantiation on the tree representations of terms. The
+definition of <b>sharing of the two variables</b> has been adopted, because
+whatever in the future instantiates one of the two, immediately does so
+with the other.
+<br>&nbsp;
+<br>&nbsp;
+<hr>
+<center><a href="../ver/About_the_author.html"><img SRC="../images/s_team.gif" NOSAVE BORDER=0 height=42 width=302></a></center></body>
+</html>

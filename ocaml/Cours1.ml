@@ -85,4 +85,10 @@ La liste vide est de n'importe quel type
  EXERCICES // _ø|ø_ \\ 
 
  1. Écrire la fonction longueur l qui renvoie le nombre d'éléments de la liste l
+
+let rec longueur l =
+match l with
+| [] -> 0
+| x::rest -> 1 + (longueur rest);;
+
  2. 
